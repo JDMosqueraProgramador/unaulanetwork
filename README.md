@@ -4,6 +4,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+For compiled scss files to css use:  
+## `sass --watch src/styles/scss:src/styles/css`
+
+**Note: Your console will be in the proyect folder for you can use**
+
 In the project directory, you can run:
 
 ### `npm start`

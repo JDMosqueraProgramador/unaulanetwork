@@ -1,0 +1,35 @@
+$colors: $color1, $color2, $color3;
+
+%button {
+    padding    : 12px;
+    font-size  : $space-base * 2px;
+    font-weight: $bold;
+    border     : solid 1px;
+    color      : white;
+}
+
+$i: 1;
+@each $color in $colors {
+
+    .btn-p#{$i} {
+        @extend %button;
+        background-color: $color;
+        border-color    : $color;
+    }
+
+    $i: $i+1;
+
+}
+
+$i: 1;
+@each $color in $colors {
+
+    .btn-s#{$i} {
+        @extend %button;
+        background-color: white;
+        border-color    : $color;
+    }
+
+    $i: $i+1;
+
+}
