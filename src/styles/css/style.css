@@ -6239,6 +6239,9 @@ fieldset {
   .loginForm {
     width: 75%;
   }
+  .loginForm img {
+    width: 96px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

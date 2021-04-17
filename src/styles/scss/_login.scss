@@ -40,6 +40,12 @@
 @media only screen and (max-width: 600px) {
     .loginForm {
         width: 75%;
+        height: 100vh;
+
+        img{
+            width: 96px;
+            height: 96px;
+        }
     }
 
 }
