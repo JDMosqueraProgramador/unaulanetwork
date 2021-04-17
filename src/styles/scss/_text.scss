@@ -1,0 +1,44 @@
+.txt-dkp-48 {
+    font-size  : $desktop-48;
+    font-weight: $bold;
+}
+
+.txt-dkp-32 {
+    font-size  : $desktop-32;
+    font-weight: bold;
+}
+
+.txt-dkp-24 {
+    font-size  : $desktop-24;
+    font-weight: bold;
+}
+
+.txt-mbl-title {
+    font-size  : $mobile-title;
+    font-weight: bold;
+}
+
+.txt-mbl-subtitle {
+    font-size  : $mobile-subtitle;
+    font-weight: bold;
+}
+
+.txt-dkp-body {
+    font-size: $desktop-body;
+}
+
+.txt-mbl-body {
+    font-size: $mobile-body;
+}
+
+.txt-mbl-min {
+    font-size: $mobile-min;
+}
+
+.txt-color1 {
+    color: $color1;
+}
+
+.txt-left {
+    text-align: left !important;
+}

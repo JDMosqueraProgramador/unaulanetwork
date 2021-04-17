@@ -8,7 +8,7 @@ export default class Login extends Component {
         return (
             <div className="container-fluid m-0">
                 <div className="row">
-                    <div className="col-sm-6 g-0 overflow-hidden loginImg">
+                    <div className="col-md-6 g-0 d-md-block d-none overflow-hidden loginImg">
                         <img
                             src={loginImg}
                             alt="Biblioteca de UNAULA"
@@ -20,34 +20,42 @@ export default class Login extends Component {
                         </h1>
                     </div>
 
-                    <div className="col-sm-6 g-0">
-                        <form>
+                    <div className="col-md-6 g-0 flex-centered">
+                        <form className='loginForm'>
+
                             <img src={LogoU} alt="" />
-                            <h1>UNAULA NETWORK</h1>
-                            <input
-                                type="text"
-                                name="correo"
-                                placeholder="Correo Universitario"
-                                className="placeInput"
-                            />
-                            <input
-                                type="text"
-                                name="contraseña"
-                                placeholder="Contraseña"
-                                className="placeInput"
-                            />
-                            <button type="submit" className="btn-p2">
-                                Iniciar sesión
-                            </button>
-                            <Link to="/" className="txt-mbl-body txt-color1">Recupera tu contraseña</Link>
+                            <h1 className='txt-mbl-title'>UNAULA NETWORK</h1>
+
+                            <fieldset>
+
+                                <input
+                                    type="text"
+                                    name="correo"
+                                    placeholder="Correo Universitario"
+                                    className="placeInput"
+                                />
+                                <input
+                                    type="text"
+                                    name="contraseña"
+                                    placeholder="Contraseña"
+                                    className="placeInput"
+                                />
+                                <button type="submit" className="btn-p2 w-100">
+                                    Iniciar sesión
+                                </button>
+
+                                <Link to="/" className="txt-mbl-body txt-color1 txt-left">Recupera tu contraseña</Link>
+
+                            </fieldset>
+
                             <div>
                                 <p>¿No tienes una cuenta?</p>
-                                <Link to="/" className="btn-p1">Crear una cuenta</Link>
+                                <Link to="/" className="btn-p1 w-75">Crear una cuenta</Link>
                             </div>
+
+                            <p className='copy'>&copy; DAKAJ 2021</p>
+
                         </form>
-                        <footer>
-                            <p>&copy; DAKAJ 2021</p>
-                        </footer>
                     </div>
                 </div>
             </div>

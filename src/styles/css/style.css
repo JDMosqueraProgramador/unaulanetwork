@@ -6073,6 +6073,14 @@
   font-family: "Roboto", sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
 .absolute-centered {
   position: absolute;
   top: 50%;
@@ -6082,8 +6090,69 @@
 
 .flex-centered {
   display: flex;
+  flex-direction: initial;
   justify-content: center;
   align-items: center;
+}
+
+.btn-s3, .btn-s2, .btn-s1, .btn-p3, .btn-p2, .btn-p1 {
+  display: block;
+  width: max-content;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  border: solid 1px;
+  color: white;
+  border-radius: 8px;
+}
+
+.btn-p1 {
+  background-color: #fc9921;
+  border-color: #fc9921;
+}
+
+.btn-p2 {
+  background-color: #333333;
+  border-color: #333333;
+}
+
+.btn-p3 {
+  background-color: #ee0c20;
+  border-color: #ee0c20;
+}
+
+.btn-s1 {
+  background-color: white;
+  border-color: #fc9921;
+}
+
+.btn-s2 {
+  background-color: white;
+  border-color: #333333;
+}
+
+.btn-s3 {
+  background-color: white;
+  border-color: #ee0c20;
+}
+
+fieldset {
+  border: none;
+}
+
+.placeInput {
+  width: 100%;
+  padding: 12px;
+  background: rgba(196, 196, 196, 0.3);
+  margin: 16px 0;
+  border: solid 1px rgba(196, 196, 196, 0.3);
+  font-size: 16px;
+  font-weight: 700;
+  text-align: left !important;
+  border-radius: 8px;
+}
+.placeInput::placeholder {
+  color: rgba(0, 0, 0, 0.2);
 }
 
 .txt-dkp-48 {
@@ -6127,52 +6196,8 @@
   color: #fc9921;
 }
 
-.btn-s3, .btn-s2, .btn-s1, .btn-p3, .btn-p2, .btn-p1 {
-  padding: 12px;
-  font-size: 16px;
-  font-weight: 700;
-  border: solid 1px;
-  color: white;
-}
-
-.btn-p1 {
-  background-color: #fc9921;
-  border-color: #fc9921;
-}
-
-.btn-p2 {
-  background-color: #333333;
-  border-color: #333333;
-}
-
-.btn-p3 {
-  background-color: #ee0c20;
-  border-color: #ee0c20;
-}
-
-.btn-s1 {
-  background-color: white;
-  border-color: #fc9921;
-}
-
-.btn-s2 {
-  background-color: white;
-  border-color: #333333;
-}
-
-.btn-s3 {
-  background-color: white;
-  border-color: #ee0c20;
-}
-
-.placeInput {
-  padding: 12px;
-  background: rgba(196, 196, 196, 0.3);
-  margin: 16 0;
-  border: none;
-}
-.placeInput::placeholder {
-  color: gray;
+.txt-left {
+  text-align: left !important;
 }
 
 .loginImg {
@@ -6195,6 +6220,25 @@
   z-index: 1;
   width: 100%;
   padding: 0 10%;
+}
+
+.loginForm {
+  width: 60%;
+  margin: auto;
+}
+.loginForm * {
+  display: block;
+  text-align: center;
+  margin: 16px auto;
+}
+.loginForm .copy {
+  margin-top: 64px;
+}
+
+@media only screen and (max-width: 600px) {
+  .loginForm {
+    width: 75%;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

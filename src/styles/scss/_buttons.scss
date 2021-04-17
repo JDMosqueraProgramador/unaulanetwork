@@ -1,14 +1,20 @@
-$colors: $color1, $color2, $color3;
+$colors: $color1,
+$color2,
+$color3;
 
 %button {
-    padding    : 12px;
-    font-size  : $space-base * 2px;
-    font-weight: $bold;
-    border     : solid 1px;
-    color      : white;
+    display: block;
+    width: max-content;
+    padding      : 12px;
+    font-size    : $space-base * 2px;
+    font-weight  : $bold;
+    border       : solid 1px;
+    color        : white;
+    border-radius: $space-base * 1px;
 }
 
 $i: 1;
+
 @each $color in $colors {
 
     .btn-p#{$i} {
@@ -22,6 +28,7 @@ $i: 1;
 }
 
 $i: 1;
+
 @each $color in $colors {
 
     .btn-s#{$i} {
