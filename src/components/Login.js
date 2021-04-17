@@ -7,7 +7,7 @@ export default class Login extends Component {
     render() {
         return (
             <div className="container-fluid m-0">
-                <div className="row" style={{height: "100vh"}}>
+                <div className="row vh100" >
                     <div className="col-md-6 g-0 d-md-block d-none overflow-hidden loginImg">
                         <img
                             src={loginImg}
@@ -20,7 +20,7 @@ export default class Login extends Component {
                         </h1>
                     </div>
 
-                    <div className="col-md-6 g-0 flex-centered">
+                    <div className="col-md-6 g-0 flex-centered col-login">
                         <form className='loginForm'>
 
                             <img src={LogoU} alt="" />

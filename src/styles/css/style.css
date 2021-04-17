@@ -6095,6 +6095,10 @@ ul {
   align-items: center;
 }
 
+.vh100 {
+  height: 100vh;
+}
+
 .btn-s3, .btn-s2, .btn-s1, .btn-p3, .btn-p2, .btn-p1 {
   display: block;
   width: max-content;
@@ -6201,7 +6205,8 @@ fieldset {
 }
 
 .loginImg {
-  position: relative;
+  position: fixed;
+  height: 100vh;
 }
 .loginImg::after {
   content: "";
@@ -6221,6 +6226,13 @@ fieldset {
   width: 100%;
   padding: 0 10%;
 }
+.loginImg img {
+  object-fit: cover;
+}
+
+.col-login {
+  margin-left: 50%;
+}
 
 .loginForm {
   width: 60%;
@@ -6235,12 +6247,17 @@ fieldset {
   margin-top: 64px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
+  .col-login {
+    margin-left: initial;
+  }
+
   .loginForm {
     width: 75%;
   }
   .loginForm img {
     width: 96px;
+    height: 96px;
   }
 }
 

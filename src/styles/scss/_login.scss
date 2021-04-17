@@ -1,6 +1,7 @@
 .loginImg{
-    position: relative;
-    
+    position: fixed;
+    height: 100vh;
+
     &::after{
         content: '';
         position: absolute;
@@ -20,6 +21,14 @@
         width: 100%;
         padding: 0 10%;
     }
+
+    img{
+        object-fit: cover;
+    }
+}
+
+.col-login{
+    margin-left: 50%;
 }
 
 .loginForm{
@@ -32,15 +41,20 @@
         margin: $space-base * 2px auto;
     }
 
+
     .copy {
         margin-top: 64px;
     }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
+
+    .col-login{
+    margin-left: initial;
+
+    }
     .loginForm {
         width: 75%;
-        height: 100vh;
 
         img{
             width: 96px;
