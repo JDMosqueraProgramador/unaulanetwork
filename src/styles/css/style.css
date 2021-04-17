@@ -6086,26 +6086,45 @@
   align-items: center;
 }
 
-.loginImg {
-  position: relative;
-}
-.loginImg::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: linear-gradient(180deg, rgba(252, 153, 33, 0.6) 69.79%, rgba(238, 12, 32, 0.6) 100%);
-  height: 100%;
-  width: 100%;
-}
-.loginImg h1 {
-  text-align: center;
-  color: white;
-  text-shadow: 0px 4px 10px rgba(255, 255, 255, 0.25);
+.txt-dkp-48 {
   font-size: 48px;
-  z-index: 1;
-  width: 100%;
-  padding: 0 10%;
+  font-weight: 700;
+}
+
+.txt-dkp-32 {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.txt-dkp-24 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.txt-mbl-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.txt-mbl-subtitle {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.txt-dkp-body {
+  font-size: 16px;
+}
+
+.txt-mbl-body {
+  font-size: 14px;
+}
+
+.txt-mbl-min {
+  font-size: 12px;
+}
+
+.txt-color1 {
+  color: #fc9921;
 }
 
 .btn-s3, .btn-s2, .btn-s1, .btn-p3, .btn-p2, .btn-p1 {
@@ -6144,6 +6163,38 @@
 .btn-s3 {
   background-color: white;
   border-color: #ee0c20;
+}
+
+.placeInput {
+  padding: 12px;
+  background: rgba(196, 196, 196, 0.3);
+  margin: 16 0;
+  border: none;
+}
+.placeInput::placeholder {
+  color: gray;
+}
+
+.loginImg {
+  position: relative;
+}
+.loginImg::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(180deg, rgba(252, 153, 33, 0.6) 69.79%, rgba(238, 12, 32, 0.6) 100%);
+  height: 100%;
+  width: 100%;
+}
+.loginImg h1 {
+  text-align: center;
+  color: white;
+  text-shadow: 0px 4px 10px rgba(255, 255, 255, 0.25);
+  font-size: 48px;
+  z-index: 1;
+  width: 100%;
+  padding: 0 10%;
 }
 
 /*# sourceMappingURL=style.css.map */
