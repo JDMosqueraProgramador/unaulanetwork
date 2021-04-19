@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import loginImg from '../img/system/loginimg.svg';
-import LogoU from '../img/system/logounaula.svg';
+import loginImg from '../../img/system/loginimg.svg';
+import LogoU from '../../img/system/logounaula.svg';
 
 export default class Login extends Component {
     render() {
@@ -23,7 +23,7 @@ export default class Login extends Component {
                     <div className="col-md-6 g-0 flex-centered col-login">
                         <form className='loginForm'>
 
-                            <img src={LogoU} alt="" />
+                            <img src={LogoU} alt=""/>
                             <h1 className='txt-mbl-title'>UNAULA NETWORK</h1>
 
                             <fieldset>

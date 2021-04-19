@@ -4,13 +4,29 @@ import './styles/css/style.css';
 
 // Import components
 
-import Login from './components/Login';
+import Login from './components/login/Login';
+import Main from './components/main/Main';
+
 export default class App extends Component {
     render() {
-        return (
-            <Router>
-                <Login/>
-            </Router>
-        )
+
+        if (this.props.login) {
+
+            return (
+                <Router>
+                    <Login />
+                </Router>
+            )
+
+        } else {
+
+            return (
+                <Router>
+                    <Main />
+                </Router>
+            )
+            
+        }
+
     }
 }

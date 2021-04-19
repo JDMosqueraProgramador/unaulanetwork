@@ -1,0 +1,71 @@
+.header {
+    height: 56px;
+    border: $border;
+    width: 100%;
+    padding: 0 12px;
+
+    .logo{
+        float: left;
+        display: flex;
+        margin: 12px 0;
+        h1{
+            margin: 0 8px;
+        }
+    }
+
+    .content {
+        float: right;
+        
+        *{
+            margin: 12px 8px;
+        }
+        .buscador{
+            width: 380px;
+            margin: 8px 16px !important;
+            height: 40px;
+        }
+    }
+
+    .logo, .content {
+
+        img{
+            width: 32px;
+            height: 32px;
+        }
+    }
+
+}
+
+.nav{
+    position: fixed;
+    width: min-content;
+    height: 100%;
+    padding: 16px 20px;
+    border: $border;
+    border-top: none;
+    ul{
+        li{
+            margin-bottom: 40px;
+        }
+    }
+} 
+
+
+@include mobile {
+    .nav{
+        height: 56px;
+        bottom: 0;
+        border-top: $border;
+        width: 100%;
+        padding: 12px 0;
+        
+        ul {
+            display: flex; 
+            li{
+                margin: auto;
+            }
+        }
+    }
+}
+
+
