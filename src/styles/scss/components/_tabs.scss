@@ -1,0 +1,65 @@
+.tabs {
+    margin: auto;
+    color: $color1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .circleTabs{ 
+        border-radius: 100%;
+        background-color: white;
+        border: solid 1px $color1;
+        width: 48px;
+        height: 48px;
+        color: $color1;
+        text-align: center;
+        margin-left: -1px !important;
+        transition: 2s;
+
+        &.tabActive {
+            background-color: $color1;
+            color: white;
+        }
+
+        &:first-child {
+            margin-left: 0 !important;
+        }
+    }
+
+    .barsTabs {
+        position: relative;
+        border: solid 1px $color1;
+        width: 40px;
+        height: 10px;
+        margin-left: -1px !important;
+
+        &::after{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: $color1;
+            // color: white;
+            transition: 2s;
+
+        }
+
+        &.tabActive {
+
+            &::after {
+                width: 100%;
+            }
+        }
+    }
+
+}
+
+.tabContent {
+    display: none;
+    
+    &.active {
+        display: block;
+    }
+}

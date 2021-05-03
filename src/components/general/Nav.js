@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import homeIcon from '../../icons/home.svg';
-import chatIcon from '../../icons/chat.svg';
-import groupIcon from '../../icons/group.svg';
-import questionIcon from '../../icons/question.svg';
-import workIcon from '../../icons/work.svg';
-import notificationIcon from '../../icons/notification.svg';
+import homeIcon from '../../images/icons/home.svg';
+import chatIcon from '../../images/icons/chat.svg';
+import groupIcon from '../../images/icons/group.svg';
+import questionIcon from '../../images/icons/question.svg';
+import workIcon from '../../images/icons/work.svg';
+import notificationIcon from '../../images/icons/notification.svg';
 
 export default class Nav extends Component {
     render() {

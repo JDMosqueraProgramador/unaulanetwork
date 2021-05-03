@@ -3,3 +3,9 @@
         @content;
     }
 }
+
+@mixin widthAvailable {
+    width: -moz-available;          /* WebKit-based browsers will ignore this. */
+    width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    width: 100%;
+}

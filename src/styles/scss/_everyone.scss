@@ -8,10 +8,15 @@
 a{
     text-decoration: none;
     color: $color2;
+    cursor: pointer;
 }
 
 ul{
     list-style-type: none;
+}
+
+button {
+    cursor: pointer;
 }
 
 .absolute-centered {
@@ -27,6 +32,10 @@ ul{
     flex-direction: initial;
     justify-content: center;
     align-items    : center;
+}
+
+.pointer {
+    cursor: pointer;
 }
 
 .vh100 {

@@ -1,0 +1,77 @@
+fieldset {
+    border: none;
+}
+
+textarea{
+    resize: none;
+}
+
+.placeInput {
+    display      : block;
+    width        : 100%;
+    padding      : 12px;
+    background   : rgba(196, 196, 196, 0.3);
+    margin       : ($space-base * 2px) 0;
+    border       : solid 1px rgba(196, 196, 196, 0.3);
+    font-size    : $mobile-subtitle;
+    font-weight  : $bold;
+    text-align   : left !important;
+    border-radius: $space-base * 1px;
+    
+    &.invalid {
+        border-color: $color3;
+        color: $color3;
+        outline: $color3;
+
+        &::placeholder {
+            color: rgba($color3, 0.7);
+        }
+    }
+
+    &::placeholder {
+        color: $borders-color;
+    }
+}
+
+.inputError {
+    color: $color3;
+}
+
+.check {
+    width : 24px;
+    height: 24px;
+    position: relative;
+    overflow: hidden;
+    &::after {
+        position: absolute;
+        display: none;
+        content: '';
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: $color1;
+        background-image: url('../../images/system/Check.png');
+        background-position: center;
+        background-size: 16px 16px;
+        background-repeat: no-repeat;
+    }
+
+    &:checked{
+        &::after{
+            display: block;
+        }
+    }
+
+}
+
+.formContent {
+    width : 60%;
+    margin: auto;
+}
+
+@include mobile {
+    .formContent {
+        width: 75%;
+    }
+}

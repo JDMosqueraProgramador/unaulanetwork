@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import LogoU from '../../img/system/logounaula.svg';
-import NotificationIcon from '../../icons/notification.svg';
-import searchIcon from '../../icons/search.svg';
+import LogoU from '../../images/system/logounaula.svg';
+import NotificationIcon from '../../images/icons/notification.svg';
+import searchIcon from '../../images/icons/search.svg';
 
 export default class Menu extends Component {
 

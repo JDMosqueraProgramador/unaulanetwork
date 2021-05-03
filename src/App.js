@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './styles/css/style.css';
 
 // Import components
 
-import Login from './components/login/Login';
-import Main from './components/main/Main';
+import Login from './pages/Login';
+import InicialConfiguracion from "./pages/InicialConfiguracion";
+import Main from './pages/Main';
 
 export default class App extends Component {
     render() {
@@ -14,7 +15,17 @@ export default class App extends Component {
 
             return (
                 <Router>
-                    <Login />
+                    <Switch>
+
+                        <Route path='/configuracion' >
+                            <InicialConfiguracion />
+                        </Route>
+
+                        <Route path='/' >
+                            <Login />
+                        </Route>
+
+                    </Switch>
                 </Router>
             )
 
@@ -25,7 +36,7 @@ export default class App extends Component {
                     <Main />
                 </Router>
             )
-            
+
         }
 
     }

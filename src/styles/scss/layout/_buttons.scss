@@ -3,14 +3,25 @@ $color2,
 $color3;
 
 %button {
-    display: block;
-    width: max-content;
+    display      : block;
+    width        : max-content;
     padding      : 12px;
     font-size    : $space-base * 2px;
     font-weight  : $bold;
     border       : solid 1px;
     color        : white;
     border-radius: $space-base * 1px;
+    margin       : ($space-base * 2px) 0;
+    cursor: pointer;
+    transition: 1s;
+    &:disabled {
+        opacity: 0.7;
+    }
+
+    &.widthAvailable {
+        @include widthAvailable;
+    }
+
 }
 
 $i: 1;
@@ -37,6 +48,21 @@ $i: 1;
         border-color    : $color;
     }
 
+    $i: $i+1;
+
+}
+
+$i: 1;
+
+@each $color in $colors {
+
+    .btn-t#{$i} {
+        @extend %button;
+        background-color: transparent;
+        color           : $color;
+        border          : none;
+    }
+    
     $i: $i+1;
 
 }

@@ -1,29 +1,22 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import loginImg from '../../img/system/loginimg.svg';
-import LogoU from '../../img/system/logounaula.svg';
+import loginImg from '../images/system/loginimg.svg';
+import LogoU from '../images/system/logounaula.svg';
+
+import LoginSide from '../components/login/LoginSide';
 
 export default class Login extends Component {
     render() {
         return (
             <div className="container-fluid m-0">
                 <div className="row vh100" >
-                    <div className="col-md-6 g-0 d-md-block d-none overflow-hidden loginImg">
-                        <img
-                            src={loginImg}
-                            alt="Biblioteca de UNAULA"
-                            className="w-100 h-100"
-                        />
-                        <h1 className="absolute-centered">
-                            Descubre lo que sucede dentro de tu universidad,
-                            conéctate con UNAULA NETWORK
-                        </h1>
-                    </div>
+
+                    <LoginSide img={loginImg} text={"Descubre lo que sucede dentro de tu universidad, conéctate con UNAULA NETWORK"} />
 
                     <div className="col-md-6 g-0 flex-centered col-login">
-                        <form className='loginForm'>
+                        <form className='loginForm formContent'>
 
-                            <img src={LogoU} alt=""/>
+                            <img src={LogoU} alt="" />
                             <h1 className='txt-mbl-title'>UNAULA NETWORK</h1>
 
                             <fieldset>
@@ -35,7 +28,7 @@ export default class Login extends Component {
                                     className="placeInput"
                                 />
                                 <input
-                                    type="text"
+                                    type="password"
                                     name="contraseña"
                                     placeholder="Contraseña"
                                     className="placeInput"
@@ -50,7 +43,7 @@ export default class Login extends Component {
 
                             <div>
                                 <p>¿No tienes una cuenta?</p>
-                                <Link to="/" className="btn-p1 w-75">Crear una cuenta</Link>
+                                <Link to="/configuracion" className="btn-p1 w-75">Crear una cuenta</Link>
                             </div>
 
                             <p className='copy'>&copy; DAKAJ 2021</p>

@@ -1,0 +1,59 @@
+%info {
+    margin: 16px 0px;
+    border: solid 1px $borders-color;
+    border-radius: 8px;
+    align-items: center;
+    padding: 12px;
+
+    button {
+        margin: {
+            left: auto;
+            top: 0;
+            bottom: 0;
+        }
+    }
+}
+
+.perfilInfo {
+    display: flex;
+    align-items: center;
+
+    img {
+        width: $space-base * 5px;
+        height: $space-base * 5px;
+        margin-right: $space-base * 1px;
+        border-radius: 100%;
+        object-fit: contain;
+        border: solid 1px $borders-color;
+    }
+
+    .perfilContent {
+        *{
+            margin-bottom: 4px;
+
+            &:last-child{
+                margin-bottom: 0 !important;
+            }
+        }
+        
+    }
+
+}
+
+.seguirCard {
+    @extend %info;
+}
+
+
+
+.competencia{
+    border: solid 1px $borders-color;
+    font-size: $mobile-subtitle;
+    font-weight: $bold;
+    padding: 12px;
+    color: $color1;
+    display: block;
+    border-radius: $space-base * 1px;
+    margin: ($space-base * 1px);
+    background-color: white;
+}
