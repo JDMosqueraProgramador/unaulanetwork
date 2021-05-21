@@ -1,0 +1,45 @@
+@import '../components/publication';
+
+.newPublication{
+    padding: 12px;
+    border-radius: $space-base * 1px;
+    margin-bottom: 16px;
+    background: rgba(196, 196, 196, 0.3);
+    img {
+        width: 32px;
+        height: auto;
+    }
+
+    button {
+        margin: 0;
+    }
+
+    label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 16px auto;
+        color: $borders-color;
+        font-weight: $bold;
+        *{
+            margin: {
+                right: $space-base * 1px;
+            }
+        }
+    }
+
+    textarea {
+        background-color: transparent;
+        
+    }
+
+    .buttonsIcons {
+        justify-content: flex-end;
+        img {
+            margin: {
+                left: $space-base * 1px;
+                right: $space-base * 1px;
+            }
+        }
+    }
+}

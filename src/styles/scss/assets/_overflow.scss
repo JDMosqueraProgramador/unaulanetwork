@@ -1,0 +1,30 @@
+.sectionScroll {
+    height    : (90vh);
+    overflow-y: auto;
+    position  : sticky;
+    top       : $space-base * 7px;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &:hover {
+        &::-webkit-scrollbar-thumb {
+            background      : $borders-color;
+            // border-radius: $space-base * 1px;
+        }
+    }
+
+    &::-webkit-scrollbar-thumb {
+        // background: $borders-color;
+        border-radius: $space-base * 1px;
+    }
+}
+
+@include mobile {
+    .sectionScroll {
+        height  : inherit !important;
+        position: relative;
+        top: auto;
+    }
+}

@@ -5,33 +5,18 @@
     font-family: 'Roboto', sans-serif;
 }
 
-a{
+a {
     text-decoration: none;
-    color: $color2;
-    cursor: pointer;
+    color          : $color2;
+    cursor         : pointer;
 }
 
-ul{
+ul {
     list-style-type: none;
 }
 
 button {
     cursor: pointer;
-}
-
-.absolute-centered {
-    position : absolute;
-    top      : 50%;
-    left     : 50%;
-    transform: translate(-50%, -50%);
-
-}
-
-.flex-centered {
-    display        : flex;
-    flex-direction: initial;
-    justify-content: center;
-    align-items    : center;
 }
 
 .pointer {
@@ -40,4 +25,34 @@ button {
 
 .vh100 {
     height: 100vh;
+}
+
+.container-page {
+    padding-left: 20*2 + 32px + 16px;
+    padding-top : $space-base*7px;
+    width       : 100%;
+
+    > .row > * {
+        padding-top: $space-base * 2px;
+        padding-bottom: $space-base * 2px;
+    }
+}
+
+@include mobile {
+    .container-page {
+        padding: $space-base* 7px $space-base * 1px;
+    }
+}
+
+.etiqueta {
+    background-color: $color1;
+    padding         : 4px 8px;
+    color           : white;
+    border-radius   : 8px;
+    margin          : 0 2px;
+    display         : inline-block;
+}
+
+.borders-100 {
+    border-radius: 100%;
 }

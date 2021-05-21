@@ -1,13 +1,16 @@
 .header {
+    position: fixed;
     height: 56px;
     border: $border;
     width: 100%;
     padding: 0 12px;
+    background: $backColor;
+    z-index: 3;
 
     .logo{
         float: left;
         display: flex;
-        margin: 12px 0;
+        margin: 10px 0;
         h1{
             margin: 0 8px;
         }
@@ -17,11 +20,11 @@
         float: right;
         
         *{
-            margin: 12px 8px;
+            margin: 10px 8px;
         }
         .buscador{
             width: 380px;
-            margin: 8px 16px !important;
+            margin: 6px 16px !important;
             height: 40px;
         }
     }
@@ -43,6 +46,9 @@
     padding: 16px 20px;
     border: $border;
     border-top: none;
+    top: 56px;
+    background: $backColor;
+    z-index: 3;
     ul{
         li{
             margin-bottom: 40px;
@@ -53,6 +59,7 @@
 
 @include mobile {
     .nav{
+        top: initial;
         height: 56px;
         bottom: 0;
         border-top: $border;

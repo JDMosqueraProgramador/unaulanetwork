@@ -1,0 +1,14 @@
+.proyect{
+    width: 100%;
+    padding: 12px;
+    border: solid 1px $borders-color;
+    border-radius: 8px;
+
+    .proyectTitle {
+        float: left;
+    }
+
+    .proyectDevelopment {
+        float: right;
+    }
+}

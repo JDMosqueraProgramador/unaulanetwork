@@ -1,0 +1,44 @@
+.notifications {
+    position: absolute;
+    display: none;
+    top: $space-base * 7px;
+    right: $space-base * 7px;
+    border-radius: $space-base * 1px;
+    box-shadow: $modal-shadow;
+    padding: 12px;
+    background-color: $backColor;
+    max-width: 380px;
+    width: 380px;
+
+    * {
+        margin: initial !important;
+    }
+
+    .noti-title {
+        padding: {
+            top: 12px;
+            bottom: 12px;
+        }
+    }
+} 
+
+.notification {
+    display: flex;
+    width: 100%;
+    padding: $space-base * 2px - 4px;
+    // border-radius: $space-base;
+    border: $borders-primary;
+    border-bottom: none;
+
+    &:last-child {
+        border-bottom: $borders-primary;
+    }
+
+    .profileImg {
+        margin-right: 8px !important;
+    }
+    button {
+        margin-left: auto !important;
+        padding: 0 !important;
+    }
+}

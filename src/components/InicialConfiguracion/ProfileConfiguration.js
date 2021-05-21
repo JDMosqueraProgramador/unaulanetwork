@@ -3,10 +3,10 @@ import plusWhiteIcon from '../../images/icons/plus-white.svg';
 
 import Validacion from '../../modules/inputErrors';
 
-import Competencia from '../perfil/Competencia';
-import SeguirCard from "../perfil/SeguirCard";
+import Competencia from '../profile/Competencia';
+import SeguirCard from "../profile/SeguirCard";
 
-export default class PerfilConfiguracion extends Component {
+export default class ProfileConfiguration extends Component {
 
     state = {
         personas: [
@@ -108,7 +108,7 @@ export default class PerfilConfiguracion extends Component {
 
     }
 
-    inputOnChange(vacio, cantidad, e) {
+    handleChange(vacio, cantidad, e) {
 
         // debugger
         // console.log(e, vacio, cantidad);
@@ -294,15 +294,15 @@ export default class PerfilConfiguracion extends Component {
                 <form className=''>
 
                     <fieldset className='tabContent active'>
-                        <input className='placeInput' type='date' name='fechaNacimiento' placeholder='Fecha de nacimiento' onChange={this.inputOnChange.bind(this, true, [false])} />
+                        <input className='placeInput' type='date' name='fechaNacimiento' placeholder='Fecha de nacimiento' onChange={this.handleChange.bind(this, true, [false])} />
                         <div className='flex-centered'>
                             <input type='checkbox' id='trabajoCheck' className='check' name='tienesTrabajo' onChange={this.trabajo} />
                             <label htmlFor='trabajoCheck' className='txt-mbl-subtitle mx-2'>¿Tienes trabajo?</label>
                         </div>
 
-                        <input className='placeInput' type='text' placeholder='Escribe aquí tu trabajo' name='trabajo' style={this.state.inputTrabajoStyle} onChange={this.inputOnChange.bind(this, true, [true, 8])} />
+                        <input className='placeInput' type='text' placeholder='Escribe aquí tu trabajo' name='trabajo' style={this.state.inputTrabajoStyle} onChange={this.handleChange.bind(this, true, [true, 8])} />
 
-                        <textarea className='placeInput' placeholder='Agrega una descripción sobre tí' name='descripcion' rows='5' onChange={this.inputOnChange.bind(this, true, [true, 12])}></textarea>
+                        <textarea className='placeInput' placeholder='Agrega una descripción sobre tí' name='descripcion' rows='5' onChange={this.handleChange.bind(this, true, [true, 12])}></textarea>
 
                         {/* <div>
                             <button className='btn-p2 w-100'>Siguiente</button>
@@ -322,7 +322,7 @@ export default class PerfilConfiguracion extends Component {
                             <input type='file' id='fotoPerfil' className='d-none' name='fotoPerfil' accept="image/*" onChange={this.fotoDePerfil} />
                         </div>
 
-                        <input className='placeInput' type='number' name='telefono' placeholder='Número de teléfono' onChange={this.inputOnChange.bind(this, true, [true, 9])} />
+                        <input className='placeInput' type='number' name='telefono' placeholder='Número de teléfono' onChange={this.handleChange.bind(this, true, [true, 9])} />
 
                     </fieldset>
 

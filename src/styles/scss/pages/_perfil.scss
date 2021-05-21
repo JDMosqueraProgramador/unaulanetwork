@@ -1,41 +1,64 @@
+@import '../components/proyect';
+
 %info {
-    margin: 16px 0px;
-    border: solid 1px $borders-color;
+    margin       : 16px 0px;
+    border       : solid 1px $borders-color;
     border-radius: 8px;
-    align-items: center;
-    padding: 12px;
+    align-items  : center;
+    padding      : 12px;
 
     button {
         margin: {
-            left: auto;
-            top: 0;
+            left  : auto;
+            top   : 0;
             bottom: 0;
         }
     }
 }
 
 .perfilInfo {
-    display: flex;
+    display    : flex;
     align-items: center;
 
-    img {
-        width: $space-base * 5px;
-        height: $space-base * 5px;
-        margin-right: $space-base * 1px;
-        border-radius: 100%;
-        object-fit: contain;
-        border: solid 1px $borders-color;
+    .profileImg {
+        max-width: 200px;
+        max-height: 200px;
+        width        : 40px;
+        height       : 40px;
+        margin-right : $space-base * 1px;
+
+        img {
+            width        : 100%;
+            height       : 100%;
+            // margin-right : $space-base * 1px;
+            border-radius: 100%;
+            object-fit   : contain;
+            border       : solid 1px $borders-color;
+        }
     }
 
     .perfilContent {
-        *{
+        * {
             margin-bottom: 4px;
 
-            &:last-child{
+            &:last-child {
                 margin-bottom: 0 !important;
             }
         }
-        
+
+    }
+
+    &.profileDesktop {
+        .profileImg {
+            width : 200px !important;
+            height: max-content !important;
+        }
+
+        .perfilContent {
+            * {
+                margin-bottom: 8px;
+            }
+        }
     }
 
 }
@@ -44,16 +67,73 @@
     @extend %info;
 }
 
+.profilePage {
+    .col-md-4 {
+        &:first-child {
+            width: 36%;
+        }
 
+        &:nth-child(2) {
+            width: 39%;
+        }
+    }
+}
 
-.competencia{
-    border: solid 1px $borders-color;
-    font-size: $mobile-subtitle;
-    font-weight: $bold;
+@include mobile {
+    .profilePage {
+        .col-md-4 {
+            width: inherit !important;
+        }
+    }
+}
+
+.logro {
     padding: 12px;
-    color: $color1;
-    display: block;
+    max-width: 190px;
+    border: solid 1px $borders-color;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
     border-radius: $space-base * 1px;
-    margin: ($space-base * 1px);
+    margin: auto;
+
+    img {
+        width: $space-base * 7px;
+        margin: auto;
+    }
+
+    * {
+        margin-bottom: 8px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.competencia {
+    border          : solid 1px $borders-color;
+    font-size       : $mobile-subtitle;
+    font-weight     : $bold;
+    padding         : 12px;
+    color           : $color1;
+    display         : block;
+    border-radius   : $space-base * 1px;
+    margin          : ($space-base * 1px);
     background-color: white;
 }
+
+.follower {
+    border-radius: 100%;
+    width: 48px;
+    height: auto;
+    margin-right: $space-base *2px;
+}
+
+.followed {
+    .perfilInfo {
+        margin-top: $space-base * 2px;
+    }
+}
+

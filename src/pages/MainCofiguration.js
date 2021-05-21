@@ -4,11 +4,10 @@ import LogoU from '../images/system/logounaula.svg';
 
 import LoginSide from '../components/login/LoginSide';
 
-import CambiarPassword from '../components/InicialConfiguracion/CambiarPassword';
-import PerfilConfiguracion from '../components/InicialConfiguracion/PerfilConfiguracion';
+import ChangePassword from '../components/InicialConfiguracion/ChangePassword';
+import ProfileConfiguration from '../components/InicialConfiguracion/ProfileConfiguration';
 
-
-export default class InicialConfiguracion extends Component {
+export default class MainCofiguration extends Component {
 
     state = {
         nuevaContraseña: true  
@@ -38,7 +37,7 @@ export default class InicialConfiguracion extends Component {
                                 <h1 className='txt-dkp-24'>UNAULA NETWORK</h1>
                             </div>
 
-                            {(this.state.nuevaContraseña) ? <CambiarPassword changeForm={this.changeForm} /> : <PerfilConfiguracion />}
+                            {(this.state.nuevaContraseña) ? <ChangePassword changeForm={this.changeForm} /> : <ProfileConfiguration />}
                             
                         </div>
                     </div>

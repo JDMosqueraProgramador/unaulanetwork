@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Validacion from '../../modules/inputErrors';
-export default class CambiarPassword extends Component {
+
+export default class ChangePassword extends Component {
 
     state = {
         passwordBefore: {
@@ -22,7 +23,7 @@ export default class CambiarPassword extends Component {
         buttonDisabled: true
     }
 
-    onChange = async (vacio, minimo, igual, e) => {
+    handleChange = async (vacio, minimo, igual, e) => {
 
         console.log(e, vacio, minimo)
 
@@ -51,7 +52,7 @@ export default class CambiarPassword extends Component {
                         name="passwordBefore"
                         placeholder="Contraseña anterior"
                         className={"placeInput " + this.state.passwordBefore.classError}
-                        onChange={this.onChange.bind(this, true, [false], [false])}
+                        onChange={this.handleChange.bind(this, true, [false], [false])}
                     />
 
                     <div className='inputError'>
@@ -65,7 +66,7 @@ export default class CambiarPassword extends Component {
                         name="passwordNew"
                         placeholder="Contraseña"
                         className={"placeInput " + this.state.passwordNew.classError}
-                        onChange={this.onChange.bind(this, true, [true, 8], [false])}
+                        onChange={this.handleChange.bind(this, true, [true, 8], [false])}
                     />
 
                     <div className='inputError'>
@@ -79,7 +80,7 @@ export default class CambiarPassword extends Component {
                         name="passwordNewConfirm"
                         placeholder="Confirmar contraseña"
                         className={"placeInput " + this.state.passwordNewConfirm.classError}
-                        onChange={this.onChange.bind(this, true, [false], [true, this.state.passwordNew.value])}
+                        onChange={this.handleChange.bind(this, true, [false], [true, this.state.passwordNew.value])}
                     />
 
                     <div className='inputError' >

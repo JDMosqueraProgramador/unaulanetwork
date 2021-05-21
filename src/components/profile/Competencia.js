@@ -16,11 +16,14 @@ export default class Competencia extends Component {
 
         // debugger
 
-        if(this.state.selected) {
-            this.props.deleteCompetencia(this.props.competencia.id)
-        } else {
-            this.props.setCompetencia(this.props.competencia.id)
-        }
+        if( this.props.deleteCompetencia !== null && this.props.setCompetencia !== null){
+
+            if(this.state.selected) {
+                this.props.deleteCompetencia(this.props.competencia.id)
+            } else {
+                this.props.setCompetencia(this.props.competencia.id)
+            }
+        } 
 
         // console.log(e.target.style, styles);
 

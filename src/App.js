@@ -4,21 +4,50 @@ import './styles/css/style.css';
 
 // Import components
 
+import Menu from './components/navigation/Menu';
+import Nav from './components/navigation/Nav';
+
 import Login from './pages/Login';
-import InicialConfiguracion from "./pages/InicialConfiguracion";
+import MainCofiguration from "./pages/MainCofiguration";
 import Main from './pages/Main';
+import Perfil from './pages/Profile';
+
+import { getToken } from './modules/tokens';
 
 export default class App extends Component {
     render() {
 
-        if (this.props.login) {
+        if (getToken() !== null) {
 
             return (
+                <Router>
+
+                    <Menu />
+                    <Nav />
+
+                    <Switch>
+
+                        <Route path='/perfil'>
+                            <Perfil />
+                        </Route>
+
+                        <Route path='/'>
+                            <Main />
+                        </Route>
+                    </Switch>
+
+                </Router>
+            )
+
+        } else {
+
+            return (
+
                 <Router>
                     <Switch>
 
                         <Route path='/configuracion' >
-                            <InicialConfiguracion />
+                            <MainCofiguration />
                         </Route>
 
                         <Route path='/' >
@@ -27,14 +56,9 @@ export default class App extends Component {
 
                     </Switch>
                 </Router>
-            )
 
-        } else {
 
-            return (
-                <Router>
-                    <Main />
-                </Router>
+
             )
 
         }

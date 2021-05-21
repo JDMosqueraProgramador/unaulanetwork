@@ -13,6 +13,8 @@
 @import "../../../node_modules/bootstrap/scss/grid";
 @import "../../../node_modules/bootstrap/scss/containers";
 @import "../../../node_modules/bootstrap/scss/bootstrap-utilities.scss";
+// @import "../../../node_modules/bootstrap/scss/";
+
 
 
 //! Proyect styles 
@@ -33,6 +35,12 @@
 
 @import 'layout/margins';
 
+@import 'layout/centered';
+
+//? assets
+
+@import 'assets/overflow';
+
 //? Components 
 
 @import 'components/menu';
@@ -43,3 +51,7 @@
 @import 'pages/inicialConfig';
 @import 'components/tabs';
 @import 'pages/perfil';
+@import 'pages/groups';
+@import 'pages/main';
+
+@import 'pages/notifications';
