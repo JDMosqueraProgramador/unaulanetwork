@@ -6092,7 +6092,7 @@ button {
 }
 
 .vh100 {
-  height: 100vh;
+  height: 100vh !important;
 }
 
 .container-page {
@@ -6292,6 +6292,7 @@ textarea {
 
 .txt-dkp-body {
   font-size: 16px;
+  font-weight: 700;
 }
 
 .txt-mbl-body {
@@ -6335,6 +6336,10 @@ textarea {
   margin-bottom: 8px;
 }
 
+.mpb-16 {
+  margin-bottom: 16px;
+}
+
 .absolute-centered {
   position: absolute;
   top: 50%;
@@ -6347,6 +6352,22 @@ textarea {
   flex-direction: initial;
   justify-content: center;
   align-items: center;
+}
+
+.br-1 {
+  border-right: solid 1px rgba(0, 0, 0, 0.2);
+}
+
+.bl-1 {
+  border-left: solid 1px rgba(0, 0, 0, 0.2);
+}
+
+.bb-1 {
+  border-bottom: solid 1px rgba(0, 0, 0, 0.2);
+}
+
+.bt-1 {
+  border-top: solid 1px rgba(0, 0, 0, 0.2);
 }
 
 .sectionScroll {
@@ -6436,6 +6457,29 @@ textarea {
     margin: auto;
   }
 }
+.configurationMenu {
+  border-radius: 8px;
+  position: fixed;
+  width: 320px;
+  right: 8px;
+  background: white;
+  border: solid 1px rgba(0, 0, 0, 0.2);
+  top: 56px;
+  margin-top: 8px;
+  color: #333333;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+}
+.configurationMenu li {
+  border-top: solid 1px rgba(0, 0, 0, 0.2);
+  padding: 24px 12px;
+}
+.configurationMenu li:first-child {
+  border-top: none;
+}
+.configurationMenu li a {
+  margin: initial !important;
+}
+
 .loginImg {
   position: fixed;
   height: 100vh;
@@ -6639,6 +6683,10 @@ textarea {
   .profilePage .col-md-4 {
     width: inherit !important;
   }
+
+  .perfilInfo.profileDesktop .profileImg {
+    width: 150px !important;
+  }
 }
 .logro {
   padding: 12px;
@@ -6699,7 +6747,8 @@ textarea {
   overflow: hidden;
   border-radius: 8px;
 }
-.publication header, .publication p {
+.publication header,
+.publication p {
   padding: 0 12px;
 }
 .publication p {
@@ -6708,9 +6757,14 @@ textarea {
 }
 .publication footer {
   border-top: solid 1px rgba(0, 0, 0, 0.2);
-  padding: 12px 24px;
+  padding: 12px 40px;
 }
 
+@media only screen and (max-width: 768px) {
+  .publication footer {
+    padding: 12px 24px;
+  }
+}
 .newPublication {
   padding: 12px;
   border-radius: 8px;
@@ -6744,6 +6798,47 @@ textarea {
 .newPublication .buttonsIcons img {
   margin-left: 8px;
   margin-right: 8px;
+}
+
+.mainPage .col-md-3 {
+  width: 30%;
+}
+.mainPage .col-md-5 {
+  width: 39%;
+}
+.mainPage .col-md-4 {
+  width: 31%;
+}
+
+@media only screen and (max-width: 768px) {
+  .mainPage .col-md-3, .mainPage .col-md-4, .mainPage .col-md-5 {
+    width: inherit !important;
+  }
+}
+.smallQuestion {
+  border: solid 1px rgba(0, 0, 0, 0.2);
+  padding: 12px;
+  margin: 16px 0;
+  min-width: 290px;
+  border-radius: 8px;
+}
+
+.accountant {
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  width: min-content;
+}
+.accountant.good {
+  background-color: #27AE60;
+}
+.accountant.regular {
+  background-color: #fc9921;
+}
+.accountant.bad {
+  background-color: #ee0c20;
 }
 
 .notifications {
@@ -6782,6 +6877,87 @@ textarea {
 .notification button {
   margin-left: auto !important;
   padding: 0 !important;
+}
+
+.chatCard {
+  width: 100%;
+  border: solid 1px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  margin: 8px 0;
+}
+.chatCard .connected, .chatCard .disconnected {
+  width: 16px;
+  height: 16px;
+  border-radius: 100%;
+  margin-right: 6px;
+}
+.chatCard .connected {
+  background-color: #27AE60;
+}
+.chatCard .disconnected {
+  background-color: #ee0c20;
+}
+
+.chatNav {
+  border: solid 1px rgba(0, 0, 0, 0.2);
+  width: 31.7%;
+  position: fixed;
+  bottom: 0;
+  padding: 12px;
+  left: 73px;
+}
+.chatNav li {
+  margin: auto;
+}
+
+.chatHeader {
+  border-bottom: solid 1px rgba(0, 0, 0, 0.2);
+  padding: 12px;
+}
+.chatHeader .profileImg {
+  margin-left: 8px;
+  margin-right: 0;
+}
+
+.newMessage {
+  position: sticky;
+  top: 95%;
+}
+
+.messagesScroll {
+  height: 75% !important;
+}
+
+.message {
+  max-width: 70%;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+.message .messageBody {
+  border-radius: 8px;
+  padding: 12px;
+}
+.message .messageTime {
+  padding: 12px;
+  color: rgba(0, 0, 0, 0.2);
+}
+.message.sent {
+  margin-left: auto;
+  flex-direction: row-reverse;
+}
+.message.sent .messageBody {
+  background: #fc9921;
+  color: white;
+}
+.message.recivied .messageBody {
+  background: rgba(196, 196, 196, 0.3);
 }
 
 /*# sourceMappingURL=style.css.map */

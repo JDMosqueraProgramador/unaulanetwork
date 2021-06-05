@@ -56,37 +56,37 @@ export default class ProfileConfiguration extends Component {
 
         // Primera parte
 
-        fechaNacimiento: {
+        dateOfBirth: {
             value: '',
             error: "inicial",
         },
         tienesTrabajo: {
             value: false
         },
-        trabajo: {
+        work: {
             value: "",
             error: "inicial"
         },
-        descripcion: {
+        description: {
             value: '',
             error: "inicial"
         },
 
         // Segunda parte
 
-        fotoPerfil: {
+        profilePicture: {
             value: '',
             error: 'inicial'
         },
 
-        telefono: {
+        phone: {
             value: '',
             error: 'inicial'
         },
 
         // tercera parte
 
-        competencias: []
+        competences: []
 
     }
 
@@ -143,7 +143,7 @@ export default class ProfileConfiguration extends Component {
             document.querySelector(".addProfilePicture").children[0].children[0].classList.add("added");
             
             await this.setState({
-                fotoPerfil: {
+                profilePicture: {
                     error: null,
                     value: imgTemporalURL
                 }
@@ -163,20 +163,20 @@ export default class ProfileConfiguration extends Component {
         switch (this.state.tabPosition) {
             case 0:
                 this.setState({
-                    buttonDisabled: (this.state.fechaNacimiento.error !== null || this.state.descripcion.error !== null)
+                    buttonDisabled: (this.state.dateOfBirth.error !== null || this.state.description.error !== null)
                 })
 
                 break;
 
             case 1:
                 this.setState({
-                    buttonDisabled: (this.state.fotoPerfil.error !== null && this.state.telefono.error !== null)
+                    buttonDisabled: (this.state.profilePicture.error !== null && this.state.phone.error !== null)
                 })
                 break;
 
             case 2:
                 this.setState({
-                    buttonDisabled: !(this.state.competencias.length > 0)
+                    buttonDisabled: !(this.state.competences.length > 0)
                 })
                 break;
 
@@ -244,15 +244,15 @@ export default class ProfileConfiguration extends Component {
 
     }
 
-    // métodos de competencias 
+    // métodos de competences 
 
     setCompetencia = async (id) => {
 
-        let newArray = this.state.competencias;
+        let newArray = this.state.competences;
         newArray.push(id);
 
         await this.setState({
-            competencias: newArray
+            competences: newArray
         })
 
         this.validateButton();
@@ -261,7 +261,7 @@ export default class ProfileConfiguration extends Component {
 
     deleteCompetencia = async (id) => {
         await this.setState({
-            competencias: this.state.competencias.filter(competencia => competencia !== id)
+            competences: this.state.competences.filter(competencia => competencia !== id)
         })
 
         this.validateButton();
@@ -294,15 +294,15 @@ export default class ProfileConfiguration extends Component {
                 <form className=''>
 
                     <fieldset className='tabContent active'>
-                        <input className='placeInput' type='date' name='fechaNacimiento' placeholder='Fecha de nacimiento' onChange={this.handleChange.bind(this, true, [false])} />
+                        <input className='placeInput' type='date' name='dateOfBirth' placeholder='Fecha de nacimiento' onChange={this.handleChange.bind(this, true, [false])} />
                         <div className='flex-centered'>
                             <input type='checkbox' id='trabajoCheck' className='check' name='tienesTrabajo' onChange={this.trabajo} />
                             <label htmlFor='trabajoCheck' className='txt-mbl-subtitle mx-2'>¿Tienes trabajo?</label>
                         </div>
 
-                        <input className='placeInput' type='text' placeholder='Escribe aquí tu trabajo' name='trabajo' style={this.state.inputTrabajoStyle} onChange={this.handleChange.bind(this, true, [true, 8])} />
+                        <input className='placeInput' type='text' placeholder='Escribe aquí tu trabajo' name='work' style={this.state.inputTrabajoStyle} onChange={this.handleChange.bind(this, true, [true, 8])} />
 
-                        <textarea className='placeInput' placeholder='Agrega una descripción sobre tí' name='descripcion' rows='5' onChange={this.handleChange.bind(this, true, [true, 12])}></textarea>
+                        <textarea className='placeInput' placeholder='Agrega una descripción sobre tí' name='description' rows='5' onChange={this.handleChange.bind(this, true, [true, 12])}></textarea>
 
                         {/* <div>
                             <button className='btn-p2 w-100'>Siguiente</button>
@@ -313,16 +313,16 @@ export default class ProfileConfiguration extends Component {
                     <fieldset className='tabContent'>
                         <div className='flex-centered'>
 
-                            <label htmlFor='fotoPerfil' className='addProfilePicture flex-centered pointer'>
+                            <label htmlFor='profilePicture' className='addProfilePicture flex-centered pointer'>
                                 Agrega una foto de perfil
                                 <span className='flex-centered'>
                                     <img src={plusWhiteIcon} alt='' />
                                 </span>
                             </label>
-                            <input type='file' id='fotoPerfil' className='d-none' name='fotoPerfil' accept="image/*" onChange={this.fotoDePerfil} />
+                            <input type='file' id='profilePicture' className='d-none' name='profilePicture' accept="image/*" onChange={this.fotoDePerfil} />
                         </div>
 
-                        <input className='placeInput' type='number' name='telefono' placeholder='Número de teléfono' onChange={this.handleChange.bind(this, true, [true, 9])} />
+                        <input className='placeInput' type='number' name='phone' placeholder='Número de teléfono' onChange={this.handleChange.bind(this, true, [true, 9])} />
 
                     </fieldset>
 

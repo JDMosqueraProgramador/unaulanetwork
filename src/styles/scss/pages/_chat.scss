@@ -1,0 +1,100 @@
+.chatCard {
+    width: 100%;
+    border: $border;
+    border-radius: $space-base * 1px;
+    display: flex;
+    align-items: center;
+    padding: $space-base * 2px - 4;
+    margin: $space-base * 1px 0;
+
+    .connected, .disconnected {
+        width: $space-base * 2px;
+        height: $space-base * 2px;
+        border-radius: 100%;
+        margin-right: 6px;
+    }
+
+    .connected {
+        background-color: $color-good;
+    }
+
+    .disconnected {
+        background-color: $color3;
+    }
+
+}
+
+.chatNav {
+    border: $border;
+    width: 31.7%;
+    position: fixed;
+    bottom: 0;
+    padding: 12px;
+    left: 73px;
+
+    li {
+        margin: auto;
+    }
+
+}
+
+.chatHeader {
+    border-bottom: $border;
+    padding: $space-base * 2 - 4px;
+    .profileImg {
+        margin-left: 8px;
+        margin-right: 0;
+    }
+}
+
+.newMessage {
+    position: sticky;
+    top: 95%;
+    // height: 10%;
+}
+
+.messagesScroll {
+    height: 75% !important;
+}
+
+.message {
+    
+    max-width: 70%;
+    width: max-content;
+    display: flex;
+    align-items: center;
+
+    margin: {
+        top: $space-base * 1px;
+        left:  $space-base * 2px;
+        right:  $space-base * 2px;
+    }
+
+    .messageBody {
+        border-radius: $space-base * 1px;
+        padding: 12px;
+    }
+
+
+    .messageTime {
+        padding: 12px;
+        color: $borders-color
+    }
+
+    &.sent {
+        margin-left: auto;
+        flex-direction: row-reverse;
+
+        .messageBody {
+            background: $color1;
+            color: $backColor;
+        }
+    }
+
+    &.recivied {
+        .messageBody {
+            background: $gray-back;
+        }
+    }
+
+}

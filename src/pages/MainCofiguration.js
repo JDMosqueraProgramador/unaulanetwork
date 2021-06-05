@@ -4,8 +4,8 @@ import LogoU from '../images/system/logounaula.svg';
 
 import LoginSide from '../components/login/LoginSide';
 
-import ChangePassword from '../components/InicialConfiguracion/ChangePassword';
-import ProfileConfiguration from '../components/InicialConfiguracion/ProfileConfiguration';
+import ChangePassword from '../components/mainCofiguration/ChangePassword';
+import ProfileConfiguration from '../components/mainCofiguration/ProfileConfiguration';
 
 export default class MainCofiguration extends Component {
 

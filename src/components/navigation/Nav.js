@@ -20,7 +20,7 @@ export default class Nav extends Component {
                     </li>
 
                     <li>
-                        <Link to="/">
+                        <Link to="/chat">
                             <img src={chatIcon} alt=''/>
                         </Link>
                     </li>

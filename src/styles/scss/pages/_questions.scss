@@ -1,0 +1,28 @@
+.smallQuestion {
+    border: $border;
+    padding: 12px;
+    margin: 16px 0;
+    min-width: 290px;
+    border-radius: $space-base * 1px;
+}
+
+.accountant {
+    padding: 12px;
+    border-radius: $space-base * 1px;
+    font-size: $mobile-subtitle;
+    font-weight: $bold;
+    color: white;
+    width: min-content;
+
+    &.good {
+        background-color: $color-good;
+    }
+
+    &.regular {
+        background-color: $color1;
+    }
+
+    &.bad {
+        background-color: $color3;
+    }
+}

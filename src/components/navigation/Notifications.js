@@ -26,7 +26,7 @@ export default class Notifications extends Component {
     }
     render() {
         return (
-            <div className='notifications' style={{display: 'none'}}>
+            <div className='notifications' style={this.props.display}>
                 <h3 className='txt-mbl-title noti-title'>Notificaciones</h3>
                 {
                     this.state.notifications.map((notification, i) => (

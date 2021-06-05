@@ -85,6 +85,14 @@
             width: inherit !important;
         }
     }
+
+    .perfilInfo {
+        &.profileDesktop {
+            .profileImg {
+                width: 150px !important;
+            }
+        }
+    }
 }
 
 .logro {

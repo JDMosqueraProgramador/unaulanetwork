@@ -1,15 +1,17 @@
-.publication{
-    border: solid 1px $borders-color;
-    padding: 16px 0 0 0;
-    overflow: hidden;
+.publication {
+    border       : solid 1px $borders-color;
+    padding      : 16px 0 0 0;
+    overflow     : hidden;
     border-radius: 8px;
 
-    header, p {
+    header,
+    p {
         padding: 0 12px;
     }
 
     p {
         border-bottom: solid 1px $borders-color;
+
         padding: {
             bottom: 12px;
         }
@@ -17,6 +19,15 @@
 
     footer {
         border-top: solid 1px $borders-color;
-        padding: 12px $space-base * 3px;
+        padding   : 12px $space-base * 5px;
+    }
+}
+
+@include mobile {
+    .publication {
+        footer {
+            padding: 12px $space-base * 3px;
+
+        }
     }
 }

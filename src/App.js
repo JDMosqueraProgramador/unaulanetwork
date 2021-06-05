@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import MainCofiguration from "./pages/MainCofiguration";
 import Main from './pages/Main';
 import Perfil from './pages/Profile';
+import Chat from './pages/Chat';
 
 import { getToken } from './modules/tokens';
 
@@ -29,6 +30,10 @@ export default class App extends Component {
 
                         <Route path='/perfil'>
                             <Perfil />
+                        </Route>
+
+                        <Route path='/chat'>
+                            <Chat />
                         </Route>
 
                         <Route path='/'>

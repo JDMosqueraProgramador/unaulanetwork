@@ -56,7 +56,6 @@
     }
 } 
 
-
 @include mobile {
     .nav{
         top: initial;
@@ -73,6 +72,31 @@
             }
         }
     }
+}
+
+.configurationMenu {
+    border-radius: $space-base * 1px;
+    position: fixed;
+    width: 320px;
+    right: 8px;
+    background: $backColor;
+    border: $border;
+    top: $space-base * 7px;
+    margin-top: $space-base * 1px;
+    color: $color2;
+    box-shadow: $modal-shadow;
+    li {
+        border-top: $border;
+        padding: ($space-base * 3px) ($space-base * 2 - 4px);
+
+        &:first-child {
+            border-top: none;
+        }
+        a {
+            margin: initial !important;
+        }
+    }
+
 }
 
 

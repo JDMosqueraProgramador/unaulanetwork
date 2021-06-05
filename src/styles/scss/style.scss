@@ -37,6 +37,8 @@
 
 @import 'layout/centered';
 
+@import 'layout/borders';
+
 //? assets
 
 @import 'assets/overflow';
@@ -53,5 +55,6 @@
 @import 'pages/perfil';
 @import 'pages/groups';
 @import 'pages/main';
-
+@import 'pages/questions';
 @import 'pages/notifications';
+@import 'pages/chat';

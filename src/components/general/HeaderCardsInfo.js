@@ -7,7 +7,6 @@ export default class HeaderCardsInfo extends Component {
 
         let stylesClasses = (info.class !== undefined) ? 'perfilInfo ' + info.class : "perfilInfo";
         let txtClass = (info.class !== undefined) ? 'txt-mbl-body' + info.class : "txt-mbl-min";
-
         return (
 
             <div className={stylesClasses}>

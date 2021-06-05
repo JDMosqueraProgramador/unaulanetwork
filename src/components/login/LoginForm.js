@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { setToken, getToken } from '../../modules/tokens';
+import { setToken } from '../../modules/tokens';
 import LogoU from '../../images/system/logounaula.svg';
 
 import Validacion from '../../modules/inputErrors';
@@ -34,6 +34,8 @@ export default class LoginForm extends Component {
             password: this.state.password.value
         }
 
+        console.log("tre")
+
         axios.post('http://localhost:4000/auth/login', body, {
             headers: {
                 'Content-Type': 'application/json'
@@ -44,7 +46,7 @@ export default class LoginForm extends Component {
                 console.log(response)
 
                 if (response.status === 200) {
-                    setToken(response.headers['auth-token']);
+                    setToken(response.headers['auth-token'], body.user);
                     window.location.reload();
                 }
 

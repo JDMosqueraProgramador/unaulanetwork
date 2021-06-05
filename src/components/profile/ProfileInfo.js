@@ -84,7 +84,6 @@ export default class ProfileInfo extends Component {
                     <Proyect proyect={this.state.proyects[0]} />
                 </div>
 
-
                 <h3 className='mt-32 txt-mbl-subtitle'>Logros</h3>
 
                 <div className='mt-16 d-flex flex-wrap'>

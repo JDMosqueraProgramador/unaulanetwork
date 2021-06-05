@@ -43,3 +43,26 @@
         }
     }
 }
+
+.mainPage {
+    .col-md-3 {
+        width: 30%;
+    }
+
+    .col-md-5 {
+        width: 39%;
+    }
+
+    .col-md-4 {
+        width: 31%;
+    }
+}
+
+@include mobile {
+
+    .mainPage {
+        .col-md-3, .col-md-4, .col-md-5 {
+            width: inherit !important;
+        }
+    }
+}
