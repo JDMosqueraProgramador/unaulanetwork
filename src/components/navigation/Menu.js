@@ -20,7 +20,7 @@ export default class Menu extends Component {
 
     handleSearch = () => {
 
-        axios.get(`http://localhost:4000/auth/profile?userName=${getUser()}`, getConfig())
+        axios.get(`http://167.172.143.224:3000/auth/profile?userName=${getUser()}`, getConfig())
             .then(response => {
                 console.log(response);
             })

@@ -1,15 +1,4 @@
-// let passObject = {
-//     value: "",
-//     required: true,
-//     minValue: [true, value],
-//     maxValue: [true, value],
-//     equal: [true, valueEqual], 
-// }
-
 export default function Validacion(value, required, minValue = [null], equal = [null], lower = null, upper = null) {
-
-    // debugger
-    // console.log(value, vacio, cantidad);
 
     let input = {
         value: value,
@@ -43,5 +32,11 @@ export default function Validacion(value, required, minValue = [null], equal = [
 
 }
 
-
+// let passObject = {
+//     value: "",
+//     required: true,
+//     minValue: [true, value],
+//     maxValue: [true, value],
+//     equal: [true, valueEqual], 
+// }
 

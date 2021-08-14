@@ -78,6 +78,16 @@ export default class Messages extends Component {
                     body: "AlexisProgrammer21",
                     date: new Date("2021-07-03:14:03:59")
                 },
+                {
+                    sender: "recivied",
+                    body: "Se me olvidó otra vez ¿Como es su usuario de git?",
+                    date: new Date("2021-07-04:08:51:00")
+                },
+                {
+                    sender: "sent",
+                    body: "AlexisProgrammer21",
+                    date: new Date("2021-07-04:08:54:00")
+                },
             ]
     }
 

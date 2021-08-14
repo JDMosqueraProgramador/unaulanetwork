@@ -13,6 +13,7 @@ export const getUser = () => {
 
 export const destructToken = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("auth-user");
     window.location.reload();
 }
 

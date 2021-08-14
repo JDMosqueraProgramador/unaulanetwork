@@ -11,7 +11,7 @@ export default class MessagesBox extends Component {
                 <ChatHeader info = {{
                     img: '',
                     informacion: [],
-                    title: "Alexis Suarez Echavarría"
+                    title: "Alexander Rendón Londoño"
                 }}/>
 
                 <Messages />

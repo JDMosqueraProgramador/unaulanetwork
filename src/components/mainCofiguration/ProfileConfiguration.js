@@ -3,13 +3,13 @@ import plusWhiteIcon from '../../images/icons/plus-white.svg';
 
 import Validacion from '../../modules/inputErrors';
 
-import Competencia from '../profile/Competencia';
+import Competence from '../profile/Competence';
 import SeguirCard from "../profile/SeguirCard";
 
 export default class ProfileConfiguration extends Component {
 
     state = {
-        personas: [
+        persons: [
             {
                 id: 12,
                 headerInfo: {
@@ -36,7 +36,7 @@ export default class ProfileConfiguration extends Component {
             }
         ],
 
-        inputTrabajoStyle: {
+        inputWorkStyle: {
             display: "none"
         },
 
@@ -86,7 +86,19 @@ export default class ProfileConfiguration extends Component {
 
         // tercera parte
 
-        competences: []
+        competences: [],
+
+        competencesSelected: [
+            { id: 1, title: "Desarrollo web" },
+            { id: 2, title: "React" },
+            { id: 3, title: "Angular" },
+            { id: 4, title: "React native" },
+            { id: 5, title: "SCSS" },
+            { id: 6, title: "HTML" },
+            { id: 7, title: "CSS" },
+            { id: 8, title: "TypeScript" },
+            { id: 9, title: "Trabajo en equipo" }
+        ]
 
     }
 
@@ -133,7 +145,7 @@ export default class ProfileConfiguration extends Component {
 
     }
 
-    fotoDePerfil = async (e) => {
+    getProfilePicture = async (e) => {
 
         let imgTemporalURL = window.URL.createObjectURL(e.target.files[0]);
 
@@ -141,7 +153,7 @@ export default class ProfileConfiguration extends Component {
 
             document.querySelector(".addProfilePicture").children[0].children[0].src = imgTemporalURL;
             document.querySelector(".addProfilePicture").children[0].children[0].classList.add("added");
-            
+
             await this.setState({
                 profilePicture: {
                     error: null,
@@ -180,8 +192,8 @@ export default class ProfileConfiguration extends Component {
                 })
                 break;
 
-                default:
-                    break;
+            default:
+                break;
         }
 
         console.log(this.state.tabPosition, this.state.buttonDisabled);
@@ -232,12 +244,12 @@ export default class ProfileConfiguration extends Component {
 
     }
 
-    trabajo = (e) => {
+    hasWork = (e) => {
 
         let setDisplay = (e.target.checked) ? "block" : "none";
 
         this.setState({
-            inputTrabajoStyle: {
+            inputWorkStyle: {
                 display: setDisplay
             }
         })
@@ -267,6 +279,12 @@ export default class ProfileConfiguration extends Component {
         this.validateButton();
     }
 
+    handleSubmit = async (e) => {
+        
+        e.preventDefault();
+
+    }
+
     render() {
         return (
             <div>
@@ -291,16 +309,16 @@ export default class ProfileConfiguration extends Component {
 
                 {/* Cada una de las partes del formulario de configurción son los fieldset  */}
 
-                <form className=''>
+                <form className='' onClick={this.handleSubmit.bind(this)}>
 
                     <fieldset className='tabContent active'>
                         <input className='placeInput' type='date' name='dateOfBirth' placeholder='Fecha de nacimiento' onChange={this.handleChange.bind(this, true, [false])} />
                         <div className='flex-centered'>
-                            <input type='checkbox' id='trabajoCheck' className='check' name='tienesTrabajo' onChange={this.trabajo} />
+                            <input type='checkbox' id='trabajoCheck' className='check' name='tienesTrabajo' onChange={this.hasWork} />
                             <label htmlFor='trabajoCheck' className='txt-mbl-subtitle mx-2'>¿Tienes trabajo?</label>
                         </div>
 
-                        <input className='placeInput' type='text' placeholder='Escribe aquí tu trabajo' name='work' style={this.state.inputTrabajoStyle} onChange={this.handleChange.bind(this, true, [true, 8])} />
+                        <input className='placeInput' type='text' placeholder='Escribe aquí tu trabajo' name='work' style={this.state.inputWorkStyle} onChange={this.handleChange.bind(this, true, [true, 8])} />
 
                         <textarea className='placeInput' placeholder='Agrega una descripción sobre tí' name='description' rows='5' onChange={this.handleChange.bind(this, true, [true, 12])}></textarea>
 
@@ -319,7 +337,7 @@ export default class ProfileConfiguration extends Component {
                                     <img src={plusWhiteIcon} alt='' />
                                 </span>
                             </label>
-                            <input type='file' id='profilePicture' className='d-none' name='profilePicture' accept="image/*" onChange={this.fotoDePerfil} />
+                            <input type='file' id='profilePicture' className='d-none' name='profilePicture' accept="image/*" onChange={this.getProfilePicture} />
                         </div>
 
                         <input className='placeInput' type='number' name='phone' placeholder='Número de teléfono' onChange={this.handleChange.bind(this, true, [true, 9])} />
@@ -333,15 +351,11 @@ export default class ProfileConfiguration extends Component {
 
                         <div className='d-flex flex-wrap justify-content-center'>
 
-                            <Competencia deleteCompetencia={this.deleteCompetencia} setCompetencia={this.setCompetencia} competencia={{ id:1, title: "Desarrollo web" }} />
-                            <Competencia deleteCompetencia={this.deleteCompetencia} setCompetencia={this.setCompetencia} competencia={{ id:2, title: "React" }} />
-                            <Competencia deleteCompetencia={this.deleteCompetencia} setCompetencia={this.setCompetencia} competencia={{ id:3, title: "Angular" }} />
-                            <Competencia deleteCompetencia={this.deleteCompetencia} setCompetencia={this.setCompetencia} competencia={{ id:4, title: "React native" }} />
-                            <Competencia deleteCompetencia={this.deleteCompetencia} setCompetencia={this.setCompetencia} competencia={{ id:5, title: "SCSS" }} />
-                            <Competencia deleteCompetencia={this.deleteCompetencia} setCompetencia={this.setCompetencia} competencia={{ id:6, title: "HTML" }} />
-                            <Competencia deleteCompetencia={this.deleteCompetencia} setCompetencia={this.setCompetencia} competencia={{ id:7, title: "CSS" }} />
-                            <Competencia deleteCompetencia={this.deleteCompetencia} setCompetencia={this.setCompetencia} competencia={{ id:8, title: "TypeScript" }} />
-                            <Competencia deleteCompetencia={this.deleteCompetencia} setCompetencia={this.setCompetencia} competencia={{ id:9, title: "Trabajo en equipo" }} />
+                            {
+                                this.state.competencesSelected.map(competence => (
+                                    <Competence deleteCompetencia={this.deleteCompetencia} setCompetencia={this.setCompetencia} key={competence.id} competencia={competence} />
+                                ))
+                            }
 
                         </div>
 
@@ -356,8 +370,8 @@ export default class ProfileConfiguration extends Component {
 
                         <div>
                             {
-                                this.state.personas.map(persona => (
-                                    <SeguirCard key={persona.id} info={persona} />
+                                this.state.persons.map(person => (
+                                    <SeguirCard key={person.id} info={person} />
                                 ))
                             }
 

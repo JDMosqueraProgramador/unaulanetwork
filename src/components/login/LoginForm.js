@@ -34,9 +34,7 @@ export default class LoginForm extends Component {
             password: this.state.password.value
         }
 
-        console.log("tre")
-
-        axios.post('http://localhost:4000/auth/login', body, {
+        axios.post('http://167.172.143.224:3000/auth/login', body, {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -46,8 +44,18 @@ export default class LoginForm extends Component {
                 console.log(response)
 
                 if (response.status === 200) {
+
                     setToken(response.headers['auth-token'], body.user);
-                    window.location.reload();
+
+                    axios.get(`http://localhost:4000/users/${body.user}`)
+                        .then(response => {
+                            if (response.status === 200) window.location.reload();
+                        })
+                        .catch(error => {
+                            console.log(error.response)
+                            if (error.response.status === 404) window.location.href = "http://localhost:3000/configuracion";
+                        })
+
                 }
 
             })
@@ -58,7 +66,6 @@ export default class LoginForm extends Component {
                 switch (error.response.status) {
 
                     // Password
-
                     case 400:
                         let { password } = this.state;
 
@@ -87,7 +94,6 @@ export default class LoginForm extends Component {
                 }
 
             });
-
 
     }
 

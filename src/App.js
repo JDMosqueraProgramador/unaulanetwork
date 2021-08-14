@@ -23,22 +23,34 @@ export default class App extends Component {
             return (
                 <Router>
 
-                    <Menu />
-                    <Nav />
-
                     <Switch>
 
-                        <Route path='/perfil'>
-                            <Perfil />
-                        </Route>
-
-                        <Route path='/chat'>
-                            <Chat />
+                        <Route path='/configuracion' >
+                            <MainCofiguration />
                         </Route>
 
                         <Route path='/'>
-                            <Main />
+
+                            <Menu />
+                            <Nav />
+
+                            <Switch>
+
+                                <Route path='/perfil'>
+                                    <Perfil />
+                                </Route>
+
+                                <Route path='/chat'>
+                                    <Chat />
+                                </Route>
+
+                                <Route path='/'>
+                                    <Main />
+                                </Route>
+                            </Switch>
+                            
                         </Route>
+
                     </Switch>
 
                 </Router>
@@ -50,10 +62,6 @@ export default class App extends Component {
 
                 <Router>
                     <Switch>
-
-                        <Route path='/configuracion' >
-                            <MainCofiguration />
-                        </Route>
 
                         <Route path='/' >
                             <Login />

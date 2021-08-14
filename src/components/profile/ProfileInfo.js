@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 
 import HeaderCardsInfo from '../general/HeaderCardsInfo';
-import Competencia from '../profile/Competencia';
+import Competence from '../profile/Competence';
 import Proyect from '../profile/Proyect';
 import Logro from '../profile/Logro';
 import GroupCard from '../groups/GroupCard';
 
 import unaulaLogo from '../../images/system/logounaula.svg';
 import threePoints from '../../images/icons/threePoints.svg';
+import axios from 'axios';
 
 export default class ProfileInfo extends Component {
 
@@ -39,9 +40,21 @@ export default class ProfileInfo extends Component {
                 img: "",
                 name: "DAKAJ",
                 typeIntegrants: "Grupo de desarrollo / 5 integrantes",
-                description: "" 
+                description: ""
             }
         ]
+    }
+
+    componentDidMount = () => {
+        let body = {
+            userName: "juan.ramirez6323"
+        }
+        axios.get(`http://167.172.143.224:3000/users/${body.userName}`)
+            .then(response => {
+                console.log(response);
+            }).catch(error => {
+                console.log(error);
+            })
     }
 
     render() {
@@ -70,10 +83,10 @@ export default class ProfileInfo extends Component {
                 <h3 className='mt-32 txt-mbl-subtitle'>Competencias</h3>
 
                 <div className='d-flex flex-wrap mt-16'>
-                    <Competencia deleteCompetencia={null} setCompetencia={null} competencia={{ id: 1, title: "Flutter" }} />
-                    <Competencia deleteCompetencia={null} setCompetencia={null} competencia={{ id: 2, title: "React Native" }} />
-                    <Competencia deleteCompetencia={null} setCompetencia={null} competencia={{ id: 3, title: "HTML" }} />
-                    <Competencia deleteCompetencia={null} setCompetencia={null} competencia={{ id: 4, title: "Trabajo en equipo" }} />
+                    <Competence deleteCompetencia={null} setCompetencia={null} competencia={{ id: 1, title: "Flutter" }} />
+                    <Competence deleteCompetencia={null} setCompetencia={null} competencia={{ id: 2, title: "React Native" }} />
+                    <Competence deleteCompetencia={null} setCompetencia={null} competencia={{ id: 3, title: "HTML" }} />
+                    <Competence deleteCompetencia={null} setCompetencia={null} competencia={{ id: 4, title: "Trabajo en equipo" }} />
                 </div>
 
                 {/* Proyectos */}
