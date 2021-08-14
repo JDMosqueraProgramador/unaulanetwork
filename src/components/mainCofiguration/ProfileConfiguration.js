@@ -280,9 +280,7 @@ export default class ProfileConfiguration extends Component {
     }
 
     handleSubmit = async (e) => {
-        
         e.preventDefault();
-
     }
 
     render() {
