@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
 import plusWhiteIcon from '../../images/icons/plus-white.svg';
 
 import Validacion from '../../modules/inputErrors';
 
 import Competence from '../profile/Competence';
 import SeguirCard from "../profile/SeguirCard";
+
+import { getUser } from '../../modules/tokens';
+import { localApi } from '../../modules/apisConfig';
 
 export default class ProfileConfiguration extends Component {
 
@@ -76,6 +81,7 @@ export default class ProfileConfiguration extends Component {
 
         profilePicture: {
             value: '',
+            file: undefined,
             error: 'inicial'
         },
 
@@ -98,8 +104,11 @@ export default class ProfileConfiguration extends Component {
             { id: 7, title: "CSS" },
             { id: 8, title: "TypeScript" },
             { id: 9, title: "Trabajo en equipo" }
-        ]
+        ],
 
+        // Cuarta parte
+
+        follow: []
     }
 
     componentDidMount() {
@@ -157,6 +166,7 @@ export default class ProfileConfiguration extends Component {
             await this.setState({
                 profilePicture: {
                     error: null,
+                    file: e.target.files[0],
                     value: imgTemporalURL
                 }
             })
@@ -189,6 +199,12 @@ export default class ProfileConfiguration extends Component {
             case 2:
                 this.setState({
                     buttonDisabled: !(this.state.competences.length > 0)
+                })
+                break;
+
+            case 3:
+                this.setState({
+                    buttonDisabled: false
                 })
                 break;
 
@@ -246,6 +262,7 @@ export default class ProfileConfiguration extends Component {
 
     hasWork = (e) => {
 
+        console.log(e);
         let setDisplay = (e.target.checked) ? "block" : "none";
 
         this.setState({
@@ -260,8 +277,9 @@ export default class ProfileConfiguration extends Component {
 
     setCompetencia = async (id) => {
 
+        let competence = this.state.competencesSelected.filter(competencia => competencia.id === id);
         let newArray = this.state.competences;
-        newArray.push(id);
+        newArray.push(competence[0]);
 
         await this.setState({
             competences: newArray
@@ -273,14 +291,63 @@ export default class ProfileConfiguration extends Component {
 
     deleteCompetencia = async (id) => {
         await this.setState({
-            competences: this.state.competences.filter(competencia => competencia !== id)
+            competences: this.state.competences.filter(competencia => competencia.id !== id)
+        })
+
+        this.validateButton();
+    }
+
+    setFollowers = async (id) => {
+
+        await this.setState({
+            follow: this.state.follow.push(id)
         })
 
         this.validateButton();
     }
 
     handleSubmit = async (e) => {
+
         e.preventDefault();
+
+        debugger
+
+        if (this.state.tabPosition === 3) {
+
+            const body = new FormData();
+
+            // username,
+            // dayOfBirth,
+            // work,
+            // description,
+            // achievement,
+            // competences,
+            // name,
+            // lastName,
+            // lastName2,
+
+            body.append("username", getUser());
+            body.append("dayOfBirth", this.state.dateOfBirth.value);
+            body.append("work", this.state.work.value);
+            body.append("description", this.state.description.value);
+            body.append("achievement", []);
+
+            this.state.competences.forEach(competence => { 
+                body.append("competences", competence.title);  
+            })
+
+            body.append("profilePicture", this.state.profilePicture.file);
+
+            axios.post(localApi + "/users", body)
+                .then(response => {
+                    if (response.status === 200) window.location.href = "http://localhost:3000";
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+
+        }
+
     }
 
     render() {
@@ -307,7 +374,7 @@ export default class ProfileConfiguration extends Component {
 
                 {/* Cada una de las partes del formulario de configurción son los fieldset  */}
 
-                <form className='' onClick={this.handleSubmit.bind(this)}>
+                <form className='' onSubmit={this.handleSubmit.bind(this)} >
 
                     <fieldset className='tabContent active'>
                         <input className='placeInput' type='date' name='dateOfBirth' placeholder='Fecha de nacimiento' onChange={this.handleChange.bind(this, true, [false])} />
@@ -369,7 +436,7 @@ export default class ProfileConfiguration extends Component {
                         <div>
                             {
                                 this.state.persons.map(person => (
-                                    <SeguirCard key={person.id} info={person} />
+                                    <SeguirCard key={person.id} info={person} setFollow={this.setFollowers} />
                                 ))
                             }
 
@@ -390,7 +457,7 @@ export default class ProfileConfiguration extends Component {
                             Volver
                         </button>
 
-                        <button className='btn-p2 widthAvailable 2-100' type='button' onClick={this.next} disabled={this.state.buttonDisabled}>
+                        <button className='btn-p2 widthAvailable 2-100' type='submit' onClick={this.next} disabled={this.state.buttonDisabled}>
                             {(this.state.tabPosition === 3) ? "Terminar" : "Siguiente"}
                         </button>
                     </div>

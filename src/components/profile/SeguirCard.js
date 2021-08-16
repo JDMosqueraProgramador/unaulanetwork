@@ -9,12 +9,14 @@ export default class SeguirCard extends Component {
         btnClass: "btn-p1"
     }
     onClick = () => {
-
+        
         this.setState({
             siguiendo: !this.state.siguiendo,
             texto: (this.state.siguiendo) ? "Seguir" : "Siguiendo",
             btnClass: (this.state.siguiendo) ? "btn-p1" : "btn-p2"
         })
+        
+        if(!this.state.siguiendo && this.props.setFollow !== null) this.props.setFollow(this.props.info.id);
     }
 
     render() {

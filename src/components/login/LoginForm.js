@@ -5,6 +5,7 @@ import { setToken } from '../../modules/tokens';
 import LogoU from '../../images/system/logounaula.svg';
 
 import Validacion from '../../modules/inputErrors';
+import { localApi, unaulaApi } from '../../modules/apisConfig';
 
 export default class LoginForm extends Component {
 
@@ -34,7 +35,7 @@ export default class LoginForm extends Component {
             password: this.state.password.value
         }
 
-        axios.post('http://167.172.143.224:3000/auth/login', body, {
+        axios.post(unaulaApi + '/auth/login', body, {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -47,7 +48,7 @@ export default class LoginForm extends Component {
 
                     setToken(response.headers['auth-token'], body.user);
 
-                    axios.get(`http://localhost:4000/users/${body.user}`)
+                    axios.get(`${localApi}/users/${body.user}`)
                         .then(response => {
                             if (response.status === 200) window.location.reload();
                         })
