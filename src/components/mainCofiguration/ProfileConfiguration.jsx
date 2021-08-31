@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 import plusWhiteIcon from '../../images/icons/plus-white.svg';
 
@@ -9,9 +8,12 @@ import Competence from '../profile/Competence';
 import SeguirCard from "../profile/SeguirCard";
 
 import { getUser } from '../../modules/tokens';
-import { localApi } from '../../modules/apisConfig';
+// eslint-disable-next-line no-unused-vars
+import { localApi, unaulaApi } from '../../modules/apisConfig';
+import { mapStateToPropsLogin } from '../../app/features/users/authSlice';
+import { connect } from 'react-redux';
 
-export default class ProfileConfiguration extends Component {
+class ProfileConfiguration extends Component {
 
     state = {
         persons: [
@@ -95,15 +97,7 @@ export default class ProfileConfiguration extends Component {
         competences: [],
 
         competencesSelected: [
-            { id: 1, title: "Desarrollo web" },
-            { id: 2, title: "React" },
-            { id: 3, title: "Angular" },
-            { id: 4, title: "React native" },
-            { id: 5, title: "SCSS" },
-            { id: 6, title: "HTML" },
-            { id: 7, title: "CSS" },
-            { id: 8, title: "TypeScript" },
-            { id: 9, title: "Trabajo en equipo" }
+
         ],
 
         // Cuarta parte
@@ -111,7 +105,18 @@ export default class ProfileConfiguration extends Component {
         follow: []
     }
 
-    componentDidMount() {
+    getCompetences = async () => {
+
+        await localApi.get(`competences/searcharea?area=${this.props.login.department}`)
+            .then(response => {
+                console.log(response)
+                this.setState({
+                    competencesSelected: response.data
+                })
+            })
+    }
+
+    async componentDidMount() {
 
         const tabs = document.querySelector(".tabs").querySelectorAll(".circleTabs");
         const tabsContent = document.querySelectorAll(".tabContent");
@@ -126,6 +131,15 @@ export default class ProfileConfiguration extends Component {
 
             })
         });
+
+        console.log(this.props);
+        // get competences 
+
+        await this.getCompetences();
+
+        // Get the users for follow 
+
+        // await axios.get(unaulaApi + "/users")
 
     }
 
@@ -154,6 +168,29 @@ export default class ProfileConfiguration extends Component {
 
     }
 
+    handleSearch = async (e) => {
+
+        const search = e.target.value;
+
+        if (search !== "") {
+
+            await localApi.get(`competences/search?name=${search}`)
+                .then(response => {
+
+                    this.setState({
+                        competencesSelected: response.data
+                    })
+
+                }).catch(error => {
+                    console.log(error)
+                })
+
+        } else {
+            await this.getCompetences();
+        }
+
+    }
+
     getProfilePicture = async (e) => {
 
         let imgTemporalURL = window.URL.createObjectURL(e.target.files[0]);
@@ -177,8 +214,6 @@ export default class ProfileConfiguration extends Component {
     }
 
     validateButton = () => {
-
-        // debugger
 
         // const posicion = (position !== null && position !== undefined) ? position : this.state.tabPosition;
 
@@ -204,7 +239,7 @@ export default class ProfileConfiguration extends Component {
 
             case 3:
                 this.setState({
-                    buttonDisabled: false
+                    buttonDisabled: !(this.state.follow.length > 0)
                 })
                 break;
 
@@ -277,9 +312,11 @@ export default class ProfileConfiguration extends Component {
 
     setCompetencia = async (id) => {
 
-        let competence = this.state.competencesSelected.filter(competencia => competencia.id === id);
+        let competence = id;
+        // let competence = this.state.competencesSelected.filter(competencia => competencia.id === id);
         let newArray = this.state.competences;
-        newArray.push(competence[0]);
+
+        newArray.push(competence);
 
         await this.setState({
             competences: newArray
@@ -291,7 +328,7 @@ export default class ProfileConfiguration extends Component {
 
     deleteCompetencia = async (id) => {
         await this.setState({
-            competences: this.state.competences.filter(competencia => competencia.id !== id)
+            competences: this.state.competences.filter(competencia => competencia._id !== id)
         })
 
         this.validateButton();
@@ -299,8 +336,10 @@ export default class ProfileConfiguration extends Component {
 
     setFollowers = async (id) => {
 
+        let follows = [...this.state.follow]
+        follows.push(id);
         await this.setState({
-            follow: this.state.follow.push(id)
+            follow: follows
         })
 
         this.validateButton();
@@ -310,21 +349,9 @@ export default class ProfileConfiguration extends Component {
 
         e.preventDefault();
 
-        debugger
-
         if (this.state.tabPosition === 3) {
 
             const body = new FormData();
-
-            // username,
-            // dayOfBirth,
-            // work,
-            // description,
-            // achievement,
-            // competences,
-            // name,
-            // lastName,
-            // lastName2,
 
             body.append("username", getUser());
             body.append("dayOfBirth", this.state.dateOfBirth.value);
@@ -332,13 +359,13 @@ export default class ProfileConfiguration extends Component {
             body.append("description", this.state.description.value);
             body.append("achievement", []);
 
-            this.state.competences.forEach(competence => { 
-                body.append("competences", competence.title);  
+            this.state.competences.forEach(competence => {
+                body.append("competences", competence);
             })
 
             body.append("profilePicture", this.state.profilePicture.file);
 
-            axios.post(localApi + "/users", body)
+            await localApi.post("users", body)
                 .then(response => {
                     if (response.status === 200) window.location.href = "http://localhost:3000";
                 })
@@ -351,6 +378,11 @@ export default class ProfileConfiguration extends Component {
     }
 
     render() {
+
+        // calculate min year
+
+        let maxYear = `${(new Date().getFullYear() - 15)}-12-31`; 
+        
         return (
             <div>
                 {/* Nav de tabs en bolitas */}
@@ -377,7 +409,12 @@ export default class ProfileConfiguration extends Component {
                 <form className='' onSubmit={this.handleSubmit.bind(this)} >
 
                     <fieldset className='tabContent active'>
-                        <input className='placeInput' type='date' name='dateOfBirth' placeholder='Fecha de nacimiento' onChange={this.handleChange.bind(this, true, [false])} />
+
+                        <input className='placeInput' type='date' name='dateOfBirth' placeholder='Fecha de nacimiento' max={maxYear} onChange={this.handleChange.bind(this, true, [false])} />
+                        {/* Error */}
+                        <div className='inputError'> {(this.state.dateOfBirth.error !== ("inicial" || null)) ? this.state.dateOfBirth.error : null} </div>
+
+                        {/* Trabajo input */}
                         <div className='flex-centered'>
                             <input type='checkbox' id='trabajoCheck' className='check' name='tienesTrabajo' onChange={this.hasWork} />
                             <label htmlFor='trabajoCheck' className='txt-mbl-subtitle mx-2'>¿Tienes trabajo?</label>
@@ -385,7 +422,9 @@ export default class ProfileConfiguration extends Component {
 
                         <input className='placeInput' type='text' placeholder='Escribe aquí tu trabajo' name='work' style={this.state.inputWorkStyle} onChange={this.handleChange.bind(this, true, [true, 8])} />
 
+
                         <textarea className='placeInput' placeholder='Agrega una descripción sobre tí' name='description' rows='5' onChange={this.handleChange.bind(this, true, [true, 12])}></textarea>
+                        <div className='inputError'> {(this.state.description.error !== ("inicial" || null)) ? this.state.description.error : null} </div>
 
                         {/* <div>
                             <button className='btn-p2 w-100'>Siguiente</button>
@@ -405,20 +444,24 @@ export default class ProfileConfiguration extends Component {
                             <input type='file' id='profilePicture' className='d-none' name='profilePicture' accept="image/*" onChange={this.getProfilePicture} />
                         </div>
 
+
                         <input className='placeInput' type='number' name='phone' placeholder='Número de teléfono' onChange={this.handleChange.bind(this, true, [true, 9])} />
+
+                        <div className='inputError'> {(this.state.phone.error !== ("inicial" || null)) ? this.state.phone.error : null} </div>
+
 
                     </fieldset>
 
                     <fieldset className='tabContent'>
                         <h3 className='txt-mbl-subtitle text-center'>Agrega tus competencias</h3>
 
-                        <input className='placeInput' type='text' placeholder='Buscar una competencia' />
+                        <input className='placeInput' type='text' placeholder='Buscar una competencia' onChange={this.handleSearch.bind(this)} />
 
                         <div className='d-flex flex-wrap justify-content-center'>
 
                             {
                                 this.state.competencesSelected.map(competence => (
-                                    <Competence deleteCompetencia={this.deleteCompetencia} setCompetencia={this.setCompetencia} key={competence.id} competencia={competence} />
+                                    <Competence deleteCompetencia={this.deleteCompetencia} setCompetencia={this.setCompetencia} key={competence._id} competencia={competence} />
                                 ))
                             }
 
@@ -451,7 +494,7 @@ export default class ProfileConfiguration extends Component {
                             className='btn-p3 mpr-8'
                             type='button'
                             onClick={this.previous}
-                            style={(this.state.tabPosition !== 0) ? {} : this.state.previousStyle}
+                            style={(this.state.tabPosition !== 0) ? { } : this.state.previousStyle}
 
                         >
                             Volver
@@ -465,7 +508,7 @@ export default class ProfileConfiguration extends Component {
                     <button
                         className='btn-t1 txt-mbl-body mx-auto my-0 py-0'
                         type='button'
-                        style={(this.state.tabPosition !== 0 && this.state.tabPosition !== 3) ? {} : this.state.omitirStyle}
+                        style={(this.state.tabPosition !== 0 && this.state.tabPosition !== 3) ? { } : this.state.omitirStyle}
                         onClick={this.next}
                     >
                         Omitir por ahora
@@ -476,3 +519,5 @@ export default class ProfileConfiguration extends Component {
         )
     }
 }
+
+export default connect(mapStateToPropsLogin)(ProfileConfiguration);

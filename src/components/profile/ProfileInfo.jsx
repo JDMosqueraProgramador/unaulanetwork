@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 
 import HeaderCardsInfo from '../general/HeaderCardsInfo';
-import Competence from '../profile/Competence';
-import Proyect from '../profile/Proyect';
-import Logro from '../profile/Logro';
+import Competence from './Competence';
+import Proyect from './Proyect';
+import Logro from './Logro';
 import GroupCard from '../groups/GroupCard';
 
 import unaulaLogo from '../../images/system/logounaula.svg';
 import threePoints from '../../images/icons/threePoints.svg';
-import axios from 'axios';
 
-export default class ProfileInfo extends Component {
+import { connect } from 'react-redux';
+import { mapStateToPropsLogin } from '../../app/features/users/authSlice';
+
+class ProfileInfo extends Component {
 
     state = {
         proyects: [
@@ -42,29 +44,32 @@ export default class ProfileInfo extends Component {
                 typeIntegrants: "Grupo de desarrollo / 5 integrantes",
                 description: ""
             }
-        ]
+        ],
     }
 
-    componentDidMount = () => {
-        let body = {
-            userName: "juan.ramirez6323"
-        }
-        axios.get(`http://167.172.143.224:3000/users/${body.userName}`)
-            .then(response => {
-                console.log(response);
-            }).catch(error => {
-                console.log(error);
-            })
+    componentDidMount = async () => {
+
+    
     }
 
     render() {
+
+        const { name, rol, faculty, department, img, description, work } = this.props.login.user;
+        
+        const userInfo = {
+            img: img,
+            title: name,
+            informacion: [rol, `Facultad de ${faculty}`, department, work],
+            class: 'profileDesktop'
+        }
+        
         return (
 
             <div className="col-md-4 sectionScroll">
 
-                <HeaderCardsInfo info={{ img: 'https://scontent.feoh5-1.fna.fbcdn.net/v/t1.6435-9/163285308_5244944768912548_3309780487764353130_n.jpg?_nc_cat=102&ccb=1-3&_nc_sid=730e14&_nc_ohc=dB49_8k7euwAX-UKfsX&_nc_ht=scontent.feoh5-1.fna&oh=729124156e8ff6627ec62a7355cab768&oe=60BEF80E', title: "Alexis Suarez Echavarría", informacion: ["Estudiante", "Facultad de ingenierías", "Ingeniería formática", "Desempleado"], class: "profileDesktop" }} />
+                <HeaderCardsInfo info={userInfo} />
 
-                <p className='mt-16'><strong>Descripción:</strong> Esto es una descripción que el usuario puede agregar a su perfil</p>
+                <p className='mt-16'><strong>Descripción:</strong> {description} </p>
 
                 <div className='d-flex justify-content-center mt-16'>
                     <button className='btn-p1 w-100 mpr-8 '>Seguir</button>
@@ -133,3 +138,5 @@ export default class ProfileInfo extends Component {
         )
     }
 }
+
+export default connect(mapStateToPropsLogin)(ProfileInfo)

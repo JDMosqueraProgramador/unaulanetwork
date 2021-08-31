@@ -11,7 +11,7 @@ export default class HeaderCardsInfo extends Component {
 
             <div className={stylesClasses}>
                 <div className='profileImg'>
-                    <img src={info.img}  className='img-fluid' alt='' />
+                    <img src={info.img} className='img-fluid' alt='' />
                 </div>
                 <div className='perfilContent'>
                     <h3 className='txt-mbl-subtitle'>{info.title}</h3>

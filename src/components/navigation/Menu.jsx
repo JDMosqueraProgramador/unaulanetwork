@@ -9,8 +9,10 @@ import Configuration from './Cofiguration';
 import LogoU from '../../images/system/logounaula.svg';
 import NotificationIcon from '../../images/icons/notification.svg';
 import searchIcon from '../../images/icons/search.svg';
+import { connect } from 'react-redux';
+import { mapStateToPropsLogin } from '../../app/features/users/authSlice';
 
-export default class Menu extends Component {
+class Menu extends Component {
 
     state = {
         menuConfig: { display: 'none' },
@@ -46,6 +48,8 @@ export default class Menu extends Component {
     }
 
     render() {
+
+        const { img } = this.props.login.user;
         return (
             <header className='header'>
 
@@ -66,7 +70,7 @@ export default class Menu extends Component {
                     <Notifications display={this.state.notifications} />
 
                     <img src={searchIcon} alt='' className='d-md-none d-block' />
-                    <img src='https://scontent.feoh5-1.fna.fbcdn.net/v/t1.6435-9/163285308_5244944768912548_3309780487764353130_n.jpg?_nc_cat=102&ccb=1-3&_nc_sid=730e14&_nc_ohc=dB49_8k7euwAX-UKfsX&_nc_ht=scontent.feoh5-1.fna&oh=729124156e8ff6627ec62a7355cab768&oe=60BEF80E' alt='' className='me-0 borders-100' onClick={this.handleMenuConfig}/>                    
+                    <img src={img} alt='' className='me-0 borders-100' onClick={this.handleMenuConfig}/>                    
                 </div>
 
                 <Configuration display={this.state.menuConfig} />
@@ -75,3 +79,5 @@ export default class Menu extends Component {
         )
     }
 }
+
+export default connect(mapStateToPropsLogin)(Menu);

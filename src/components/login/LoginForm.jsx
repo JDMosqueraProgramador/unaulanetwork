@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+// import { useSelector, useDispatch } from 'react-redux';
+
+
 import { setToken } from '../../modules/tokens';
 import LogoU from '../../images/system/logounaula.svg';
 
 import Validacion from '../../modules/inputErrors';
 import { localApi, unaulaApi } from '../../modules/apisConfig';
 
-export default class LoginForm extends Component {
 
+export default class LoginForm extends Component {
+    
     state = {
 
         email: {
@@ -28,6 +31,8 @@ export default class LoginForm extends Component {
 
     handleSubmit = (e) => {
 
+        debugger
+
         e.preventDefault();
 
         let body = {
@@ -35,7 +40,9 @@ export default class LoginForm extends Component {
             password: this.state.password.value
         }
 
-        axios.post(unaulaApi + '/auth/login', body, {
+        // const dispatch = useDispatch()
+
+        unaulaApi.post('auth/login', body, {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -48,7 +55,7 @@ export default class LoginForm extends Component {
 
                     setToken(response.headers['auth-token'], body.user);
 
-                    axios.get(`${localApi}/users/${body.user}`)
+                    localApi.get(`users/${body.user}`)
                         .then(response => {
                             if (response.status === 200) window.location.reload();
                         })
@@ -96,6 +103,8 @@ export default class LoginForm extends Component {
 
             });
 
+            // this.props.logIn()
+
     }
 
     handleChange = async (vacio, minimo, igual, e) => {
@@ -104,11 +113,11 @@ export default class LoginForm extends Component {
             [e.target.name]: Validacion(e.target.value, vacio, minimo, igual),
         })
 
-        this.setState({
+        await this.setState({
             buttonDisabled: !(this.state.email.error === null && this.state.password.error === null)
         })
 
-        console.log(this.state[e.target.name])
+        // console.log(this.state[e.target.name])
 
     }
 
@@ -177,4 +186,5 @@ export default class LoginForm extends Component {
         )
     }
 }
+
 

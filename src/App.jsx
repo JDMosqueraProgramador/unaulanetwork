@@ -13,9 +13,22 @@ import Main from './pages/Main';
 import Perfil from './pages/Profile';
 import Chat from './pages/Chat';
 
+import { connect } from 'react-redux';
+
 import { getToken } from './modules/tokens';
 
-export default class App extends Component {
+import { getUserLoginAPI } from './app/features/users/authSlice';
+
+class App extends Component {
+
+    componentDidMount = async () => {
+
+        if (getToken() !== null) {
+            await this.props.dispatch(getUserLoginAPI)
+        }
+
+    }
+
     render() {
 
         if (getToken() !== null) {
@@ -35,7 +48,6 @@ export default class App extends Component {
                             <Nav />
 
                             <Switch>
-
                                 <Route path='/perfil'>
                                     <Perfil />
                                 </Route>
@@ -48,7 +60,7 @@ export default class App extends Component {
                                     <Main />
                                 </Route>
                             </Switch>
-                            
+
                         </Route>
 
                     </Switch>
@@ -70,11 +82,19 @@ export default class App extends Component {
                     </Switch>
                 </Router>
 
-
-
             )
 
         }
 
     }
 }
+
+// const mapDispatchToProps = dispatch => {
+//     return bindActionCreators({ loginAction, getUserLoginAPI }, dispatch)
+//     // return { logIn: (data) => dispatch(logIn(data)) }
+// }
+
+// const mapStateToProps = state => ({ login: state.login })
+
+
+export default connect()(App)

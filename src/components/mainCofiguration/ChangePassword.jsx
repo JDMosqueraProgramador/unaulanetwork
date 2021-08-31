@@ -25,7 +25,7 @@ export default class ChangePassword extends Component {
 
     handleChange = async (vacio, minimo, igual, e) => {
 
-        console.log(e, vacio, minimo)
+        // console.log(e, vacio, minimo)
 
         await this.setState({
             [e.target.name]: Validacion(e.target.value, vacio, minimo, igual),

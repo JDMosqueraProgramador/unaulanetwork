@@ -23,6 +23,8 @@
     .profileImg {
         max-width: 200px;
         max-height: 200px;
+        min-width: 40px;
+        min-height: 40px;
         width        : 40px;
         height       : 40px;
         margin-right : $space-base * 1px;
@@ -51,7 +53,7 @@
     &.profileDesktop {
         .profileImg {
             width : 200px !important;
-            height: max-content !important;
+            height: 200px !important;
         }
 
         .perfilContent {
