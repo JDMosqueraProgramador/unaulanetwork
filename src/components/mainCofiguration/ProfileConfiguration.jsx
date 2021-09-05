@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import plusWhiteIcon from '../../images/icons/plus-white.svg';
-
 import Validacion from '../../modules/inputErrors';
 
 import Competence from '../profile/Competence';
@@ -12,6 +10,7 @@ import { getUser } from '../../modules/tokens';
 import { localApi, unaulaApi } from '../../modules/apisConfig';
 import { mapStateToPropsLogin } from '../../app/features/users/authSlice';
 import { connect } from 'react-redux';
+import ProfilePictureInput from './ProfilePictureInput';
 
 class ProfileConfiguration extends Component {
 
@@ -107,9 +106,8 @@ class ProfileConfiguration extends Component {
 
     getCompetences = async () => {
 
-        await localApi.get(`competences/searcharea?area=${this.props.login.department}`)
+        await localApi.get(`competences/searcharea?area=${this.props.login.user.department}`)
             .then(response => {
-                console.log(response)
                 this.setState({
                     competencesSelected: response.data
                 })
@@ -191,26 +189,39 @@ class ProfileConfiguration extends Component {
 
     }
 
-    getProfilePicture = async (e) => {
+    // getProfilePicture = async (e) => {
 
-        let imgTemporalURL = window.URL.createObjectURL(e.target.files[0]);
+    //     let imgTemporalURL = window.URL.createObjectURL(e.target.files[0]);
 
-        if (imgTemporalURL !== undefined && imgTemporalURL !== null) {
+    //     if (imgTemporalURL !== undefined && imgTemporalURL !== null) {
 
-            document.querySelector(".addProfilePicture").children[0].children[0].src = imgTemporalURL;
-            document.querySelector(".addProfilePicture").children[0].children[0].classList.add("added");
+    //         document.querySelector(".addProfilePicture").children[0].children[0].src = imgTemporalURL;
+    //         document.querySelector(".addProfilePicture").children[0].children[0].classList.add("added");
 
-            await this.setState({
-                profilePicture: {
-                    error: null,
-                    file: e.target.files[0],
-                    value: imgTemporalURL
-                }
-            })
+    //         await this.setState({
+    //             profilePicture: {
+    //                 error: null,
+    //                 file: e.target.files[0],
+    //                 value: imgTemporalURL
+    //             }
+    //         })
 
-            this.validateButton();
-        }
+    //         this.validateButton();
+    //     }
 
+    // }
+
+    getProfilePicture = async (file) => {
+
+        await this.setState({
+            profilePicture: {
+                error: null,
+                file: file,
+                value: file
+            }
+        })
+
+        this.validateButton();
     }
 
     validateButton = () => {
@@ -247,7 +258,7 @@ class ProfileConfiguration extends Component {
                 break;
         }
 
-        console.log(this.state.tabPosition, this.state.buttonDisabled);
+        // console.log(this.state.tabPosition, this.state.buttonDisabled);
 
     }
 
@@ -381,8 +392,8 @@ class ProfileConfiguration extends Component {
 
         // calculate min year
 
-        let maxYear = `${(new Date().getFullYear() - 15)}-12-31`; 
-        
+        let maxYear = `${(new Date().getFullYear() - 15)}-12-31`;
+
         return (
             <div>
                 {/* Nav de tabs en bolitas */}
@@ -433,7 +444,7 @@ class ProfileConfiguration extends Component {
                     </fieldset>
 
                     <fieldset className='tabContent'>
-                        <div className='flex-centered'>
+                        {/* <div className='flex-centered'>
 
                             <label htmlFor='profilePicture' className='addProfilePicture flex-centered pointer'>
                                 Agrega una foto de perfil
@@ -442,8 +453,9 @@ class ProfileConfiguration extends Component {
                                 </span>
                             </label>
                             <input type='file' id='profilePicture' className='d-none' name='profilePicture' accept="image/*" onChange={this.getProfilePicture} />
-                        </div>
+                        </div> */}
 
+                        <ProfilePictureInput getFile={this.getProfilePicture} />
 
                         <input className='placeInput' type='number' name='phone' placeholder='Número de teléfono' onChange={this.handleChange.bind(this, true, [true, 9])} />
 

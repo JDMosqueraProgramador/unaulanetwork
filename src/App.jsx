@@ -48,7 +48,7 @@ class App extends Component {
                             <Nav />
 
                             <Switch>
-                                <Route path='/perfil'>
+                                <Route path='/profile/:user'>
                                     <Perfil />
                                 </Route>
 
@@ -56,9 +56,14 @@ class App extends Component {
                                     <Chat />
                                 </Route>
 
-                                <Route path='/'>
+                                <Route exact path='/'>
                                     <Main />
                                 </Route>
+
+                                <Route path="*">
+                                    404
+                                </Route>
+
                             </Switch>
 
                         </Route>

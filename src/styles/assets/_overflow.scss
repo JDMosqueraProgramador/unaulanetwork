@@ -28,3 +28,21 @@
         top: auto;
     }
 }
+
+.beautyScroll {
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &:hover {
+        &::-webkit-scrollbar-thumb {
+            background      : $borders-color;
+            // border-radius: $space-base * 1px;
+        }
+    }
+
+    &::-webkit-scrollbar-thumb {
+        // background: $borders-color;
+        border-radius: $space-base * 1px;
+    }
+}

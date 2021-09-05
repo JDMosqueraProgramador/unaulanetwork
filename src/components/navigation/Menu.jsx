@@ -49,7 +49,7 @@ class Menu extends Component {
 
     render() {
 
-        const { img } = this.props.login.user;
+        const { profilePicture } = this.props.login.user;
         return (
             <header className='header'>
 
@@ -70,7 +70,7 @@ class Menu extends Component {
                     <Notifications display={this.state.notifications} />
 
                     <img src={searchIcon} alt='' className='d-md-none d-block' />
-                    <img src={img} alt='' className='me-0 borders-100' onClick={this.handleMenuConfig}/>                    
+                    <img src={profilePicture} alt='' className='me-0 borders-100' onClick={this.handleMenuConfig}/>                    
                 </div>
 
                 <Configuration display={this.state.menuConfig} />

@@ -31,7 +31,7 @@ export default class LoginForm extends Component {
 
     handleSubmit = (e) => {
 
-        debugger
+        // debugger
 
         e.preventDefault();
 
@@ -39,8 +39,6 @@ export default class LoginForm extends Component {
             user: this.state.email.value,
             password: this.state.password.value
         }
-
-        // const dispatch = useDispatch()
 
         unaulaApi.post('auth/login', body, {
             headers: {
@@ -56,7 +54,9 @@ export default class LoginForm extends Component {
                     setToken(response.headers['auth-token'], body.user);
 
                     localApi.get(`users/${body.user}`)
+
                         .then(response => {
+                            debugger
                             if (response.status === 200) window.location.reload();
                         })
                         .catch(error => {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from "react-router";
 
 import HeaderCardsInfo from '../general/HeaderCardsInfo';
 import Competence from './Competence';
@@ -8,9 +9,14 @@ import GroupCard from '../groups/GroupCard';
 
 import unaulaLogo from '../../images/system/logounaula.svg';
 import threePoints from '../../images/icons/threePoints.svg';
+import plusIcon from '../../images/icons/plus.svg';
 
 import { connect } from 'react-redux';
 import { mapStateToPropsLogin } from '../../app/features/users/authSlice';
+import Options from '../general/Options';
+import EditProfileModal from './EditProfileModal';
+import { getUser } from '../../modules/tokens';
+import { getUserAPI } from '../../api/userApi';
 
 class ProfileInfo extends Component {
 
@@ -45,36 +51,110 @@ class ProfileInfo extends Component {
                 description: ""
             }
         ],
+        user: {},
+        rol: '',
+        profileOptions: false,
+        options: [],
+        modal: false
     }
 
     componentDidMount = async () => {
-
-    
+        this.setState(
+            {
+                user: (this.props.match.params.user === getUser()) ? this.props.login.user : await getUserAPI({ user: this.props.match.params.user }),
+                options: (this.props.match.params.user === getUser()) ?
+                    [
+                        {
+                            action: this.openModal,
+                            name: 'Editar datos del perfil'
+                        },
+                        {
+                            url: '/',
+                            name: 'Cambiar contraseña'
+                        }
+                    ]
+                    :
+                    [
+                        {
+                            url: '/',
+                            name: 'Ver más información'
+                        },
+                        {
+                            url: '/',
+                            name: 'Ayuda'
+                        }
+                    ],
+                rol: (this.props.match.params.user === getUser()) ? 'Edit' : 'Can view'
+            }
+        )
     }
 
-    render() {
+    openProfileOptions = async () => {
+        this.setState({
+            profileOptions: !this.state.profileOptions
+        })
+    }
 
-        const { name, rol, faculty, department, img, description, work } = this.props.login.user;
-        
+    openModal = async () => {
+        this.setState({
+            modal: !this.state.modal
+        })
+    }
+
+    render = () => {
+
+        console.log(this.state.user);
+        const { name, rol, faculty, department, profilePicture, description, work, competences, achievement } = this.state.user;
+
+        // console.log(name, rol, faculty, department, img, description, work);
+
         const userInfo = {
-            img: img,
+            img: profilePicture,
             title: name,
             informacion: [rol, `Facultad de ${faculty}`, department, work],
             class: 'profileDesktop'
         }
-        
+
+        let buttons = {
+            0: (this.state.rol === "Edit") ? <button className='btn-p2 w-100 mpr-8'>Historial de actividad</button> :
+                <button className='btn-p1 w-100 mpr-8 '>Seguir</button>,
+            1: (this.state.rol === "Edit") ? <button className='btn-p2 w-100 mpr-8'>Ir a UNAULA</button> :
+                <button className='btn-p1 w-100 mpr-8'>Perfil académico</button>
+        }
+
         return (
 
-            <div className="col-md-4 sectionScroll">
+            <div className="col-md-4 sectionScroll" style={{
+                zIndex: (this.state.modal) ? 4 : 'inherit'
+            }}>
+
+                {
+                    (this.state.modal) ? <EditProfileModal
+                        close={this.openModal}
+                        inputs={{ work: work, description: description }}
+                    /> : null
+                }
 
                 <HeaderCardsInfo info={userInfo} />
 
                 <p className='mt-16'><strong>Descripción:</strong> {description} </p>
 
-                <div className='d-flex justify-content-center mt-16'>
-                    <button className='btn-p1 w-100 mpr-8 '>Seguir</button>
-                    <button className='btn-p1 w-100 mpr-8'>Perfil académico</button>
-                    <img src={threePoints} alt='' />
+                <div className='d-flex justify-content-center mt-16 position-relative'>
+
+                    {/* <button className='btn-p1 w-100 mpr-8 '>Seguir</button>
+                    <button className='btn-p1 w-100 mpr-8'>Perfil académico</button> */}
+                    {
+                        buttons[0]
+                    }
+                    {
+                        buttons[1]
+                    }
+                    <button className='icon-button'> <img src={threePoints} alt='' onClick={this.openProfileOptions} /></button>
+
+                    {
+                        (this.state.profileOptions) ? <Options options={this.state.options} title={'Opciones'} open={this.state.profileOptions} /> : null
+                    }
+
                 </div>
 
                 <p className='d-flex mt-16'>
@@ -85,32 +165,49 @@ class ProfileInfo extends Component {
 
                 {/* Competencias  */}
 
-                <h3 className='mt-32 txt-mbl-subtitle'>Competencias</h3>
+                <h3 className='mt-32 txt-mbl-subtitle d-flex'>
+                    <span class="w-100 d-flex align-items-center">Competencias</span>
+                    {
+                        (this.state.rol === "Edit") ? <button class="icon-button"><img src={plusIcon} alt="" /></button> : null
+                    }
+                </h3>
 
                 <div className='d-flex flex-wrap mt-16'>
-                    <Competence deleteCompetencia={null} setCompetencia={null} competencia={{ id: 1, title: "Flutter" }} />
-                    <Competence deleteCompetencia={null} setCompetencia={null} competencia={{ id: 2, title: "React Native" }} />
-                    <Competence deleteCompetencia={null} setCompetencia={null} competencia={{ id: 3, title: "HTML" }} />
-                    <Competence deleteCompetencia={null} setCompetencia={null} competencia={{ id: 4, title: "Trabajo en equipo" }} />
+
+                    {
+                        competences?.map(competence => (
+                            <Competence deleteCompetencia={null} setCompetencia={null} key={competence._id} competencia={{ id: competence._id, title: competence.name }} />
+                        ))
+                    }
+
                 </div>
 
                 {/* Proyectos */}
 
-                <h3 className='mt-32 txt-mbl-subtitle'>Proyectos</h3>
+                <h3 className='mt-32 txt-mbl-subtitle d-flex'>
+                    <span class="w-100 d-flex align-items-center">Proyectos </span>
+                    {
+                        (this.state.rol === "Edit") ? <button class="icon-button"><img src={plusIcon} alt="" /></button> : null
+                    }
+                </h3>
 
                 <div className='mt-16'>
                     <Proyect proyect={this.state.proyects[0]} />
                 </div>
 
-                <h3 className='mt-32 txt-mbl-subtitle'>Logros</h3>
+                <h3 className='mt-32 txt-mbl-subtitle d-flex'>
+                    <span class="w-100 d-flex align-items-center">Logros</span>
+                    {
+                        (this.state.rol === "Edit") ? <button class="icon-button"><img src={plusIcon} alt="" /></button> : null
+                    }
+                </h3>
 
                 <div className='mt-16 d-flex flex-wrap'>
                     {
-                        this.state.logros.map((logro, i) => (
-                            <Logro key={i} logro={logro} />
+                        achievement?.map((achievement, i) => (
+                            <Logro key={i} logro={achievement} />
                         ))
                     }
-
                 </div>
 
                 <h3 className='mt-32 txt-mbl-subtitle'>Grupos</h3>
@@ -139,4 +236,4 @@ class ProfileInfo extends Component {
     }
 }
 
-export default connect(mapStateToPropsLogin)(ProfileInfo)
+export default connect(mapStateToPropsLogin)(withRouter(ProfileInfo))

@@ -1,0 +1,30 @@
+@import '../../styles/variables';
+
+.optionsMenu {
+    position: absolute;
+    width: 360px;
+    box-shadow: $modal-shadow;
+    border-radius: $space-base * 1px;
+    background-color: white;
+    border: $borders-primary;
+    top: 64px;
+    right: 8px;
+
+    li, h2 {
+        padding: ($space-base * 2px) (($space-base * 2px) - 4px);
+    }
+
+    li {
+        align-items: center;
+        a, button {
+            width: 100%;
+            text-align: left;
+        }
+    }
+
+    h2 {
+        border: {
+            bottom: $borders-primary
+        } 
+    }
+}

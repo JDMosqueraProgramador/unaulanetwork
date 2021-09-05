@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import HeaderCardsInfo from '../general/HeaderCardsInfo'
 import { Link } from 'react-router-dom'
 import arrowRightIcon from '../../images/icons/arrowRight.svg';
-import { destructToken } from '../../modules/tokens';
+import { destructToken, getUser } from '../../modules/tokens';
 // import axios from 'axios';
 // import { unaulaApi } from '../../modules/apisConfig';
 // import { upperFisrtLetterPipe } from '../../pipes/lettersPipes';
@@ -14,17 +14,18 @@ class Cofiguration extends Component {
 
     render() {
         
-        const { name, img } = this.props.login.user;
+        const { name, profilePicture } = this.props.login.user;
+        const urlToProfile = `/profile/${getUser()}`;
 
         return (
 
             <ul className='configurationMenu' style={this.props.display}>
                 <li className='d-flex'>
-                    <Link to='/perfil'>
+                    <Link to={urlToProfile}>
                         <HeaderCardsInfo info={{
                             title: name,
                             informacion: ['Ver perfil'],
-                            img: img
+                            img: profilePicture
                         }} />
                     </Link>
 

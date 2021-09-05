@@ -3,6 +3,8 @@ import { LOGIN_ACTION, LOGOUT_ACTION, loginAction } from "./authActions";
 import { unaulaApi, localApi } from '../../../modules/apisConfig';
 
 import { upperFisrtLetterPipe } from '../../../pipes/lettersPipes';
+
+import { getUserAPI } from '../../../api/userApi';
 import { getUser } from "../../../modules/tokens";
 
 const initialState = {
@@ -33,27 +35,11 @@ const authReducer = (state = initialState, action) => {
 
 export const getUserLoginAPI = async (dispatch, getState) => {
 
-    const data = { name: '', rol: '', faculty: '', department: '', img: '', description: '', work: '' }
+        const body = {
+            user: getUser()
+        } 
 
-    await unaulaApi.get(`users/studentinfo/?userName=${getUser()}`)
-        .then(async response => {
-
-            data.name = upperFisrtLetterPipe(response.data[0].strName);
-            data.rol = response.data[0].rol;
-            data.faculty = response.data[0].strfacultyname;
-            data.department = response.data[0].strDepartmentName;
-
-            await localApi.get(`users/${getUser()}`)
-                .then(response => {
-
-                    data.img = response.data.profilePicture;
-                    data.description = response.data.description;
-                    data.work = response.data.work;
-
-                }).catch(error => console.log(error.response))
-
-        })
-
+        const data = await getUserAPI(body);
         dispatch(loginAction(data))
 
 }
