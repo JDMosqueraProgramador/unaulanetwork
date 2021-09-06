@@ -116,9 +116,9 @@ class ProfileInfo extends Component {
         }
 
         let buttons = {
-            0: (this.state.rol === "Edit") ? <button className='btn-p2 w-100 mpr-8'>Historial de actividad</button> :
+            0: (this.state.rol === "Edit") ? <button className='btn-p2 w-100 mpr-8' onClick={this.openModal}>Editar datos del perfil</button> :
                 <button className='btn-p1 w-100 mpr-8 '>Seguir</button>,
-            1: (this.state.rol === "Edit") ? <button className='btn-p2 w-100 mpr-8'>Ir a UNAULA</button> :
+            1: (this.state.rol === "Edit") ? /*<button className='btn-p2 w-100 mpr-8'>Ir a UNAULA</button>*/ null :
                 <button className='btn-p1 w-100 mpr-8'>Perfil académico</button>
         }
 
@@ -166,9 +166,9 @@ class ProfileInfo extends Component {
                 {/* Competencias  */}
 
                 <h3 className='mt-32 txt-mbl-subtitle d-flex'>
-                    <span class="w-100 d-flex align-items-center">Competencias</span>
+                    <span className="w-100 d-flex align-items-center">Competencias</span>
                     {
-                        (this.state.rol === "Edit") ? <button class="icon-button"><img src={plusIcon} alt="" /></button> : null
+                        (this.state.rol === "Edit") ? <button className="icon-button"><img src={plusIcon} alt="" /></button> : null
                     }
                 </h3>
 
@@ -185,9 +185,9 @@ class ProfileInfo extends Component {
                 {/* Proyectos */}
 
                 <h3 className='mt-32 txt-mbl-subtitle d-flex'>
-                    <span class="w-100 d-flex align-items-center">Proyectos </span>
+                    <span className="w-100 d-flex align-items-center">Proyectos </span>
                     {
-                        (this.state.rol === "Edit") ? <button class="icon-button"><img src={plusIcon} alt="" /></button> : null
+                        (this.state.rol === "Edit") ? <button className="icon-button"><img src={plusIcon} alt="" /></button> : null
                     }
                 </h3>
 
@@ -196,9 +196,9 @@ class ProfileInfo extends Component {
                 </div>
 
                 <h3 className='mt-32 txt-mbl-subtitle d-flex'>
-                    <span class="w-100 d-flex align-items-center">Logros</span>
+                    <span className="w-100 d-flex align-items-center">Logros</span>
                     {
-                        (this.state.rol === "Edit") ? <button class="icon-button"><img src={plusIcon} alt="" /></button> : null
+                        (this.state.rol === "Edit") ? <button className="icon-button"><img src={plusIcon} alt="" /></button> : null
                     }
                 </h3>
 

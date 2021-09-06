@@ -9,8 +9,8 @@ export default class ProfilePictureInput extends Component {
     }
 
     getProfilePicture = async (e) => {
-
-        let imgTemporalURL = window.URL.createObjectURL(e.target.files[0]);
+        let imgTemporalURL = null;
+        if(e.target.files[0]) imgTemporalURL = window.URL.createObjectURL(e.target.files[0]);
 
         if (imgTemporalURL !== undefined && imgTemporalURL !== null) {
 
