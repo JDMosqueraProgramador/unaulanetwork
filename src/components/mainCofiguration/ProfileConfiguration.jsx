@@ -375,7 +375,10 @@ class ProfileConfiguration extends Component {
             })
 
             body.append("profilePicture", this.state.profilePicture.file);
-
+            
+            debugger
+            
+            console.log(body);
             await localApi.post("users", body)
                 .then(response => {
                     if (response.status === 200) window.location.href = "http://localhost:3000";

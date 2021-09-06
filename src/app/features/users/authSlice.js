@@ -1,9 +1,5 @@
 import { LOGIN_ACTION, LOGOUT_ACTION, loginAction } from "./authActions";
 
-import { unaulaApi, localApi } from '../../../modules/apisConfig';
-
-import { upperFisrtLetterPipe } from '../../../pipes/lettersPipes';
-
 import { getUserAPI } from '../../../api/userApi';
 import { getUser } from "../../../modules/tokens";
 
