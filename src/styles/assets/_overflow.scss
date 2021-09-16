@@ -25,11 +25,13 @@
     .sectionScroll {
         height  : inherit !important;
         position: relative;
-        top: auto;
+        top     : auto;
     }
 }
 
-.beautyScroll {
+// .beautyScroll {
+
+* {
     &::-webkit-scrollbar {
         width: 8px;
     }

@@ -18,6 +18,7 @@ import { connect } from 'react-redux';
 import { getToken } from './modules/tokens';
 
 import { getUserLoginAPI } from './app/features/users/authSlice';
+import NoFound from './pages/NoFound';
 
 class App extends Component {
 
@@ -61,7 +62,7 @@ class App extends Component {
                                 </Route>
 
                                 <Route path="*">
-                                    404
+                                    <NoFound />
                                 </Route>
 
                             </Switch>

@@ -16,9 +16,9 @@ export const getUserAPI = async (body) => {
             await localApi.get(`users/${body.user}`)
                 .then(response => {
                     data = {...data, ...response.data}
-                }).catch(error => console.log(error.response))
+                }).catch(error => { data = error.response })
 
-        }).catch(error => console.log(error.response))
+        }).catch(error => { data = error.response })
 
     return data;
 

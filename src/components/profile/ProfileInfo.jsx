@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from "react-router";
+// import { withRouter } from "react-router";
 
 import HeaderCardsInfo from '../general/HeaderCardsInfo';
 import Competence from './Competence';
@@ -11,14 +11,15 @@ import unaulaLogo from '../../images/system/logounaula.svg';
 import threePoints from '../../images/icons/threePoints.svg';
 import plusIcon from '../../images/icons/plus.svg';
 
-import { connect } from 'react-redux';
-import { mapStateToPropsLogin } from '../../app/features/users/authSlice';
+// import { connect } from 'react-redux';
+// import { mapStateToPropsLogin } from '../../app/features/users/authSlice';
 import Options from '../general/Options';
 import EditProfileModal from './EditProfileModal';
 import { getUser } from '../../modules/tokens';
-import { getUserAPI } from '../../api/userApi';
+// import { getUserAPI } from '../../api/userApi';
+import Empty from '../general/Empty';
 
-class ProfileInfo extends Component {
+export default class ProfileInfo extends Component {
 
     state = {
         proyects: [
@@ -51,7 +52,7 @@ class ProfileInfo extends Component {
                 description: ""
             }
         ],
-        user: {},
+        // user: {},
         rol: '',
         profileOptions: false,
         options: [],
@@ -61,8 +62,8 @@ class ProfileInfo extends Component {
     componentDidMount = async () => {
         this.setState(
             {
-                user: (this.props.match.params.user === getUser()) ? this.props.login.user : await getUserAPI({ user: this.props.match.params.user }),
-                options: (this.props.match.params.user === getUser()) ?
+                // user: (this.props.match.params.user === getUser()) ? this.props.login.user : await getUserAPI({ user: this.props.match.params.user }),
+                options: (this.props.user.user === getUser()) ?
                     [
                         {
                             action: this.openModal,
@@ -84,7 +85,7 @@ class ProfileInfo extends Component {
                             name: 'Ayuda'
                         }
                     ],
-                rol: (this.props.match.params.user === getUser()) ? 'Edit' : 'Can view'
+                rol: (this.props.user.user === getUser()) ? 'Edit' : 'Can view'
             }
         )
     }
@@ -103,10 +104,7 @@ class ProfileInfo extends Component {
 
     render = () => {
 
-        console.log(this.state.user);
-        const { name, rol, faculty, department, profilePicture, description, work, competences, achievement } = this.state.user;
-
-        // console.log(name, rol, faculty, department, img, description, work);
+        const { name, rol, faculty, department, profilePicture, description, work, competences, achievement } = this.props.user;
 
         const userInfo = {
             img: profilePicture,
@@ -163,7 +161,7 @@ class ProfileInfo extends Component {
                     <strong className='mpr-8 mpl-8'>Publicaciones: 3</strong>
                 </p>
 
-                {/* Competencias  */}
+                {/* Competencias */}
 
                 <h3 className='mt-32 txt-mbl-subtitle d-flex'>
                     <span className="w-100 d-flex align-items-center">Competencias</span>
@@ -174,26 +172,51 @@ class ProfileInfo extends Component {
 
                 <div className='d-flex flex-wrap mt-16'>
 
-                    {
-                        competences?.map(competence => (
-                            <Competence deleteCompetencia={null} setCompetencia={null} key={competence._id} competencia={{ id: competence._id, title: competence.name }} />
-                        ))
-                    }
+                    <Empty
+                        data={
+                            competences?.map(competence => (
+                                <Competence deleteCompetencia={null} setCompetencia={null} key={competence._id} competencia={{ id: competence._id, title: competence.name }} />
+                            ))
+                        }
+                        empty={
+                            {
+                                text: "No se han encontrado competencias",
+                                action: () => {},
+                                button: "Agregar competencias"
+                            }
+                        }
+                    />
 
                 </div>
 
                 {/* Proyectos */}
 
                 <h3 className='mt-32 txt-mbl-subtitle d-flex'>
-                    <span className="w-100 d-flex align-items-center">Proyectos </span>
+                    <span className="w-100 d-flex align-items-center">Proyectos</span>
                     {
                         (this.state.rol === "Edit") ? <button className="icon-button"><img src={plusIcon} alt="" /></button> : null
                     }
                 </h3>
 
                 <div className='mt-16'>
-                    <Proyect proyect={this.state.proyects[0]} />
+                    <Empty
+                        data={
+                            this.state.proyects?.map((project, i) => (
+                                <Proyect proyect={project} key={i}/>
+                            ))
+                        }
+                        empty={
+                            {
+                                text: "No se han encontrado proyectos",
+                                action: () => {},
+                                button: "Agregar proyecto"
+                            }
+                        }
+                    />
+                    {/* <Proyect proyect={this.state.proyects[0]} /> */}
                 </div>
+
+                {/* logros */}
 
                 <h3 className='mt-32 txt-mbl-subtitle d-flex'>
                     <span className="w-100 d-flex align-items-center">Logros</span>
@@ -203,21 +226,44 @@ class ProfileInfo extends Component {
                 </h3>
 
                 <div className='mt-16 d-flex flex-wrap'>
-                    {
-                        achievement?.map((achievement, i) => (
-                            <Logro key={i} logro={achievement} />
-                        ))
-                    }
+
+                    <Empty
+                        data={
+                            achievement?.map((achievement, i) => (
+                                <Logro key={i} logro={achievement} />
+                            ))
+                        }
+                        empty={
+                            {
+                                text: "No se han encontrado logros",
+                                action: () => { console.log("Oli x2") },
+                                button: "Agregar logros"
+                            }
+                        }
+                    />
+
                 </div>
 
+                {/* logros */}
+                
                 <h3 className='mt-32 txt-mbl-subtitle'>Grupos</h3>
 
                 <div className='mt-16'>
-                    {
-                        this.state.groups.map((group, i) => (
-                            <GroupCard key={i} group={group} />
-                        ))
-                    }
+
+                    <Empty
+                        data={
+                            this.state.groups.map((group, i) => (
+                                <GroupCard key={i} group={group} />
+                            ))
+                        }
+                        empty={
+                            {
+                                text: "No se han encontrado grupos",
+                                action: () => { console.log("oli") },
+                                button: "Agregar logros"
+                            }
+                        }
+                    />
                 </div>
 
                 <h3 className='mt-32 txt-mbl-subtitle'>Seguidores</h3>
@@ -236,4 +282,4 @@ class ProfileInfo extends Component {
     }
 }
 
-export default connect(mapStateToPropsLogin)(withRouter(ProfileInfo))
+// export default connect(mapStateToPropsLogin)(withRouter(ProfileInfo))

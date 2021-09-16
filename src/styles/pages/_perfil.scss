@@ -53,7 +53,7 @@
     &.profileDesktop {
         .profileImg {
             width : 200px !important;
-            height: 200px !important;
+            height: max-content;;
         }
 
         .perfilContent {
